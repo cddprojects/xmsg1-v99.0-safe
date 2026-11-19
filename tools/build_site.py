@@ -117,6 +117,7 @@ ICON_PATHS = {
     "shield": '<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>',
     "book": '<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5M9 7h6"/>',
     "arrow": '<path d="M5 12h14M13 6l6 6-6 6"/>',
+    "trend": '<path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/>',
 }
 SECTOR_ICON = {"industry-care.html": "care", "industry-technology.html": "tech", "industry-finance.html": "finance", "industry-professional.html": "professional", "industry-logistics.html": "logistics", "industry-public.html": "public"}
 WORK_ICON = ["full-time", "part-time", "hybrid", "online", "contract", "freelance"]
@@ -769,7 +770,7 @@ PAGES["index.html"] = (
 <picture><source srcset="images/hero-remote-work.webp" type="image/webp"><img src="images/hero-remote-work.jpg" alt="A woman working on a laptop at a wooden table in a bright room with indoor plants" width="1152" height="864" fetchpriority="high"></picture>
 <div class="float f1"><b>2.0%</b><span>Unemployment, Sep 2026</span></div>
 <div class="float f2"><b>+27,700</b><span>Jobs added in Q3 2026</span></div>
-<div class="float f3"><span class="ring">{icon("chart")}</span><span><b>42.3%</b> of firms expect to hire</span></div>
+<div class="float f3"><span class="ring">{icon("trend")}</span><span><b>42.3%</b> of firms expect to hire</span></div>
 </div>
 </div></section>
 
