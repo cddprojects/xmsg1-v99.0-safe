@@ -737,34 +737,6 @@ def sector_cards(posts) -> str:
     return f'<div class="sector-grid">{"".join(items)}</div>'
 
 
-SKYLINE = """<svg class="skyline" viewBox="0 0 600 300" aria-hidden="true">
-<circle cx="470" cy="70" r="34" fill="#f0643c" opacity=".9"/>
-<g fill="#cfe3dc"><rect x="40" y="120" width="34" height="150" rx="3"/><rect x="250" y="140" width="40" height="130" rx="3"/><rect x="300" y="100" width="28" height="170" rx="3"/><rect x="540" y="130" width="40" height="140" rx="3"/></g>
-<g fill="#0e4d45">
-<rect x="10" y="170" width="56" height="100" rx="3"/><rect x="72" y="140" width="50" height="130" rx="3"/>
-<rect x="352" y="118" width="24" height="152"/><rect x="388" y="118" width="24" height="152"/><rect x="424" y="118" width="24" height="152"/>
-<path d="M338 112h128c6 0 6 8 0 8H338c-4 0-4-8 0-8z"/>
-</g>
-<g fill="#ffffff" opacity=".55">
-<rect x="18" y="182" width="8" height="6"/><rect x="34" y="182" width="8" height="6"/><rect x="50" y="182" width="8" height="6"/>
-<rect x="18" y="198" width="8" height="6"/><rect x="34" y="198" width="8" height="6"/><rect x="50" y="198" width="8" height="6"/>
-<rect x="18" y="214" width="8" height="6"/><rect x="34" y="214" width="8" height="6"/><rect x="50" y="214" width="8" height="6"/>
-<rect x="80" y="154" width="8" height="6"/><rect x="96" y="154" width="8" height="6"/><rect x="80" y="170" width="8" height="6"/><rect x="96" y="170" width="8" height="6"/>
-<rect x="80" y="186" width="8" height="6"/><rect x="96" y="186" width="8" height="6"/><rect x="80" y="202" width="8" height="6"/><rect x="96" y="202" width="8" height="6"/>
-</g>
-<g stroke="#0e4d45" stroke-width="3" fill="none">
-<circle cx="520" cy="170" r="52"/><path d="M520 118v104M468 170h104M483 133l74 74M557 133l-74 74"/><path d="M505 268l15-46 15 46"/>
-</g>
-<g fill="#1f8a73">
-<path d="M150 270V196h6v74z"/><path d="M128 190q25 18 50 0l-14 10h-22z"/><ellipse cx="153" cy="188" rx="26" ry="6"/>
-<path d="M192 270V176h6v94z"/><ellipse cx="195" cy="168" rx="30" ry="7"/>
-<path d="M228 270V206h5v64z"/><ellipse cx="230" cy="200" rx="20" ry="5"/>
-</g>
-<path d="M0 270h600v30H0z" fill="#0e4d45" opacity=".12"/>
-<path d="M0 282c40-6 80 6 120 0s80 6 120 0 80 6 120 0 80 6 120 0 80 6 120 0" stroke="#0e4d45" stroke-width="2" fill="none" opacity=".35"/>
-</svg>"""
-
-
 FAQS = [
     ("Does CPF apply to part-time work in Singapore?", "Yes. A part-time employee is still an employee. For Singapore citizens and permanent residents, CPF applies once total wages exceed $50 a month. Where wages are above $50 and no more than $500, only the employer's share is payable."),
     ("What is the difference between contract and freelance work?", "A fixed-term contract is usually employment with an end date, so Employment Act protections and CPF apply while it runs. Freelance work is self-employment under a contract for service, with MediSave and income tax handled under the self-employed rules."),
@@ -794,7 +766,7 @@ PAGES["index.html"] = (
 <div class="btn-row"><a class="btn btn-primary" href="#explore">Six work types, compared{icon("arrow")}</a><a class="btn btn-ghost" href="market.html">Q3 2026 market review</a></div>
 </div>
 <div class="hero-art">
-{SKYLINE}
+<picture><source srcset="images/hero-remote-work.webp" type="image/webp"><img src="images/hero-remote-work.jpg" alt="A woman working on a laptop at a wooden table in a bright room with indoor plants" width="1152" height="864" fetchpriority="high"></picture>
 <div class="float f1"><b>2.0%</b><span>Unemployment, Sep 2026</span></div>
 <div class="float f2"><b>+27,700</b><span>Jobs added in Q3 2026</span></div>
 <div class="float f3"><span class="ring">{icon("chart")}</span><span><b>42.3%</b> of firms expect to hire</span></div>
