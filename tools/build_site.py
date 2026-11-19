@@ -971,11 +971,11 @@ PAGES["about.html"] = (
 PAGES["contact.html"] = (
     "contact",
     "Contact WorkNest SG",
-    "Contact the WorkNest SG editorial team with corrections or topic suggestions. WorkNest SG does not accept job applications.",
+    "Contact WorkNest SG with corrections, updated figures, or topic suggestions. WorkNest SG does not accept job applications.",
     """
 <header class="post-head"><div class="wrap narrow">
 <p class="eyebrow">Contact</p>
-<h1>Contact the editorial team</h1>
+<h1>Contact Us</h1>
 <p class="dek">We welcome corrections, updated figures, and suggestions for future articles. Job applications and CVs should be sent directly to employers; we are unable to forward them.</p>
 </div></header>
 <section class="tight"><div class="wrap split">
