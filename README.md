@@ -1,5 +1,5 @@
 # WorkNest SG
 
-Dated notes on Singapore's job market for a general audience: where resident hiring is holding, how six industries differ this quarter, and how work arrangements are usually described.
+Notes on full-time, part-time, hybrid, online, contract, project-based, and freelance work in Singapore, set against the current job-market figures.
 
 Open `site/index.html` in a browser. The pages are static HTML. `tools/build_site.py` regenerates them from the same copy.

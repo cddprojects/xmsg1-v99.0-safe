@@ -9,9 +9,9 @@ BRAND = """<svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="
 
 NAV = [
     ("index.html", "Home", "home"),
-    ("career-path.html", "Notes", "path"),
-    ("market.html", "Market", "market"),
+    ("work-options.html", "Work types", "work"),
     ("industries.html", "Industries", "industries"),
+    ("market.html", "Market", "market"),
     ("applying.html", "Applications", "applying"),
     ("about.html", "About", "about"),
     ("contact.html", "Contact", "contact"),
@@ -50,14 +50,21 @@ def chrome(title: str, description: str, current: str, main: str) -> str:
 <footer class="site-footer"><div class="wrap">
 <div class="foot-grid">
 <div><a class="brand" href="index.html">{BRAND}</a>
-<p>Dated notes on Singapore's job market, the industries inside it, and the way work is usually arranged. General information for anyone following the market.</p></div>
-<div><h2>Notes</h2><ul>
-<li><a href="career-path.html">Overview</a></li>
-<li><a href="market.html">Market</a></li>
+<p>Notes on full-time, part-time, hybrid, online, contract, project-based, and freelance work in Singapore, set against the current job market.</p></div>
+<div><h2>Work types</h2><ul>
+<li><a href="work-options.html#full-time">Full-time work</a></li>
+<li><a href="work-options.html#part-time">Part-time work</a></li>
+<li><a href="work-options.html#hybrid">Hybrid work</a></li>
+<li><a href="work-options.html#online">Online work</a></li>
+<li><a href="work-options.html#contract">Contract and project work</a></li>
+<li><a href="work-options.html#freelance">Freelance work</a></li>
+</ul></div>
+<div><h2>Market</h2><ul>
 <li><a href="industries.html">Industries</a></li>
-<li><a href="skills.html">Skills and training</a></li>
-<li><a href="work-options.html">Work arrangements</a></li>
+<li><a href="market.html">National market</a></li>
 <li><a href="applying.html">Applications</a></li>
+<li><a href="skills.html">Skills and training</a></li>
+<li><a href="career-path.html">Overview</a></li>
 </ul></div>
 <div><h2>About</h2><ul>
 <li><a href="about.html">About</a></li>
@@ -99,15 +106,15 @@ PAGES = {}
 
 PAGES["index.html"] = (
     "home",
-    "Singapore job market notes | WorkNest SG",
-    "Dated notes on Singapore's job market: where resident hiring is holding, where vacancies have thinned, and how industries differ this quarter.",
+    "Full-time, part-time, hybrid, online, contract and freelance work in Singapore | WorkNest SG",
+    "Notes on full-time, part-time, hybrid, online, contract, project-based, and freelance work in Singapore, set against the latest job-market figures.",
     f"""
 <section class="hero"><div class="wrap hero-grid">
 <div>
-<p class="eyebrow">Singapore job market · November 2026</p>
-<h1>Where hiring is holding, and where it has gone quiet.</h1>
-<p class="lede">Resident employment is still being supported in care, transport, and public services. Technology and finance are quieter, with fewer vacancies and more restructuring. These notes share that picture, and they change when the official figures change.</p>
-<div class="btn-row"><a class="btn btn-primary" href="market.html">Market note</a><a class="btn btn-ghost" href="industries.html">Industry notes</a></div>
+<p class="eyebrow">Work types in Singapore · November 2026</p>
+<h1>Full-time, part-time, hybrid, online, contract, and freelance work.</h1>
+<p class="lede">These notes follow those six arrangements through the current market. Full-time and part-time hiring is still being supported in care, transport, and public services. Hybrid, online, contract, project-based, and freelance work show up more often in technology, finance, and professional services, where vacancies are thinner.</p>
+<div class="btn-row"><a class="btn btn-primary" href="work-options.html">Work types</a><a class="btn btn-ghost" href="industries.html">By industry</a></div>
 </div>
 <aside class="snapshot" aria-label="Latest national figures">
 <h2>National snapshot</h2>
@@ -119,28 +126,28 @@ PAGES["index.html"] = (
 </div></section>
 
 <section class="alt"><div class="wrap">
-<div class="head"><p class="eyebrow">In these notes</p><h2>The market, the industries, and the way work is arranged.</h2>
-<p class="lede">A set of shared notes on the current quarter: the national figures, six industries, training credits, and the arrangements advertisements usually describe.</p></div>
-<ol class="steps">
-<li><span class="n">01</span><div><h3><a href="market.html">The national picture</a></h3><p>Total employment and resident hiring moved differently. Care, transport, and public services carried the resident side. Technology and finance were subdued.</p></div></li>
-<li><span class="n">02</span><div><h3><a href="industries.html">Six industries, one quarter</a></h3><p>The same labour release looks steady in some sectors and cautious in others. Each note stays with that sector's latest figures.</p></div></li>
-<li><span class="n">03</span><div><h3><a href="skills.html">Skills and public training</a></h3><p>SkillsFuture Credit, the public course catalogue, and how training sits beside a quieter hiring market.</p></div></li>
-<li><span class="n">04</span><div><h3><a href="work-options.html">Hours, place, and contract type</a></h3><p>Part-time, hybrid, shift, contract, and freelance work show up under different names, with different CPF and leave patterns.</p></div></li>
-<li><span class="n">05</span><div><h3><a href="applying.html">What advertisements usually contain</a></h3><p>Employer name, hours, workplace, pay basis, and the kinds of requests that sit outside ordinary hiring.</p></div></li>
-<li><span class="n">06</span><div><h3><a href="updates.html">When the notes last changed</a></h3><p>Every industry page carries a review date. The fuller third-quarter report is expected in mid-December 2026.</p></div></li>
-</ol>
+<div class="head"><p class="eyebrow">The six arrangements</p><h2>Where each kind of work sits this quarter.</h2>
+<p class="lede">The labels follow the latest Ministry of Manpower picture. Pay and hours still depend on the role.</p></div>
+<div class="cards">
+<a class="card" href="work-options.html#full-time"><h3>Full-time work</h3><p>The main pattern in public services, care, and transport, where resident employment is still being supported.</p><span class="more">Current note</span></a>
+<a class="card" href="work-options.html#part-time"><h3>Part-time work</h3><p>Under 35 hours a week. Common in care, transport, and essential services, and sometimes beside a full-time role.</p><span class="more">Current note</span></a>
+<a class="card" href="work-options.html#hybrid"><h3>Hybrid work</h3><p>Still written into technology and finance advertisements, in a quarter when those vacancies fell.</p><span class="more">Current note</span></a>
+<a class="card" href="work-options.html#online"><h3>Online work</h3><p>A place of work inside technology, professional services, and some freelance arrangements. Office days still appear in many postings.</p><span class="more">Current note</span></a>
+<a class="card" href="work-options.html#contract"><h3>Contract and project-based work</h3><p>Common in technology and professional services, often with an end date, while those sectors restructure.</p><span class="more">Current note</span></a>
+<a class="card" href="work-options.html#freelance"><h3>Freelance work</h3><p>Paid per project, outside employment. It shows up beside a main role, with self-employed CPF and tax rules.</p><span class="more">Current note</span></a>
+</div>
 </div></section>
 
 <section><div class="wrap">
-<div class="head"><p class="eyebrow">Industries</p><h2>The same quarter, six different situations.</h2>
-<p>The labels follow the latest official picture. They describe the sector, and they are not a ranking of employers.</p></div>
+<div class="head"><p class="eyebrow">By industry</p><h2>The same arrangements, different sectors.</h2>
+<p>A full-time care role and a hybrid technology role are meeting different markets this quarter.</p></div>
 <div class="cards">
-<a class="card" href="industry-care.html"><span class="pill steady">Steady</span><h3>Care and community</h3><p>Health and social services remain one of the sectors supporting resident employment.</p><span class="more">Current note</span></a>
-<a class="card" href="industry-technology.html"><span class="pill cautious">Cautious</span><h3>Technology</h3><p>Vacancies fell by June, retrenchments rose, and resident hiring was subdued in the third quarter.</p><span class="more">Current note</span></a>
-<a class="card" href="industry-finance.html"><span class="pill cautious">Cautious</span><h3>Finance</h3><p>Fewer vacancies, more restructuring, and selective hiring rather than a broad pickup.</p><span class="more">Current note</span></a>
-<a class="card" href="industry-professional.html"><span class="pill mixed">Mixed</span><h3>Professional services</h3><p>Second-quarter gains cooled. Entry-level professional openings were still part of the June vacancy pool.</p><span class="more">Current note</span></a>
-<a class="card" href="industry-logistics.html"><span class="pill mixed">Mixed</span><h3>Logistics and industry</h3><p>Transport and storage supported resident jobs. Manufacturing's headline growth was mostly non-resident.</p><span class="more">Current note</span></a>
-<a class="card" href="industry-public.html"><span class="pill steady">Steady</span><h3>Public and essential services</h3><p>Public administration, education, and essential services carried much of the resident employment growth.</p><span class="more">Current note</span></a>
+<a class="card" href="industry-care.html"><span class="pill steady">Steady</span><h3>Care and community</h3><p>Full-time and part-time shifts. Resident hiring in health and social services is still being supported.</p><span class="more">Current note</span></a>
+<a class="card" href="industry-technology.html"><span class="pill cautious">Cautious</span><h3>Technology</h3><p>Hybrid, online, contract, and freelance work remain in advertisements. Vacancies fell, and resident hiring was subdued.</p><span class="more">Current note</span></a>
+<a class="card" href="industry-finance.html"><span class="pill cautious">Cautious</span><h3>Finance</h3><p>Mostly full-time and hybrid. Vacancies fell from 5,800 to 4,500, and hiring is selective.</p><span class="more">Current note</span></a>
+<a class="card" href="industry-professional.html"><span class="pill mixed">Mixed</span><h3>Professional services</h3><p>Project-based contracts, hybrid days, and some freelance work. Earlier resident gains cooled.</p><span class="more">Current note</span></a>
+<a class="card" href="industry-logistics.html"><span class="pill mixed">Mixed</span><h3>Logistics and industry</h3><p>Full-time and part-time site work. Transport supported resident jobs. Online work is limited.</p><span class="more">Current note</span></a>
+<a class="card" href="industry-public.html"><span class="pill steady">Steady</span><h3>Public and essential services</h3><p>Full-time schemes, with some part-time. This is where much of the resident employment growth sat.</p><span class="more">Current note</span></a>
 </div>
 </div></section>
 
@@ -166,7 +173,7 @@ PAGES["career-path.html"] = (
 <div class="page-head"><div class="wrap">
 <p class="eyebrow">Overview</p>
 <h1>Notes on a market that is moving in more than one direction.</h1>
-<p class="lede">The national total is up. Resident hiring is concentrated in essential and public services, while technology, finance, and professional services are quieter. The notes below stay with that split.</p>
+<p class="lede">Full-time and part-time hiring is concentrated in essential and public services. Hybrid, online, contract, project-based, and freelance work are more visible in technology, finance, and professional services, where the quarter is quieter. The notes below stay with that split.</p>
 </div></div>
 <section><div class="wrap brief">
 <article class="article">
@@ -398,22 +405,22 @@ def industry_page(slug, title, description, pill, pill_label, h_label, lede, sit
 PAGES["industries.html"] = (
     "industries",
     "Industry notes on Singapore's job market | WorkNest SG",
-    "Dated notes on care, technology, finance, professional services, logistics, and public services in Singapore's current job market.",
+    "How full-time, part-time, hybrid, online, contract, and freelance work show up in care, technology, finance, and other Singapore sectors.",
     """
 <div class="page-head"><div class="wrap">
 <p class="eyebrow">Industries</p>
-<h1>Six notes on the current market.</h1>
-<p class="lede">Each page shares that industry's hiring situation from the latest official release. The pages are market notes.</p>
+<h1>Where full-time, hybrid, online, and freelance work are showing up.</h1>
+<p class="lede">Each note stays with one sector and the arrangements advertisements there usually name: full-time, part-time, hybrid, online, contract or project-based, and freelance.</p>
 </div></div>
 <section><div class="wrap">
 <p class="stamp"><strong>Updated 19 November 2026</strong><span>Vacancy counts are from June 2026 until the third-quarter report is published.</span></p>
 <div class="cards">
-<a class="card" href="industry-care.html"><span class="pill steady">Steady</span><h3>Care and community</h3><p>Resident employment in health and social services is still being supported. Registration and shifts decide many applications.</p><span class="more">Current note</span></a>
-<a class="card" href="industry-technology.html"><span class="pill cautious">Cautious</span><h3>Technology</h3><p>Vacancies down by June, retrenchments up, resident growth subdued in the third quarter.</p><span class="more">Current note</span></a>
-<a class="card" href="industry-finance.html"><span class="pill cautious">Cautious</span><h3>Finance</h3><p>Vacancies fell from 5,800 to 4,500 by June. Hiring is selective and restructuring is still in the figures.</p><span class="more">Current note</span></a>
-<a class="card" href="industry-professional.html"><span class="pill mixed">Mixed</span><h3>Professional services</h3><p>Second-quarter resident gains cooled. Entry-level professional openings were still in the June pool.</p><span class="more">Current note</span></a>
-<a class="card" href="industry-logistics.html"><span class="pill mixed">Mixed</span><h3>Logistics and industry</h3><p>Transport and storage supported resident jobs. Manufacturing and construction growth was mostly non-resident.</p><span class="more">Current note</span></a>
-<a class="card" href="industry-public.html"><span class="pill steady">Steady</span><h3>Public and essential services</h3><p>Public administration and education helped carry resident employment growth in the third quarter.</p><span class="more">Current note</span></a>
+<a class="card" href="industry-care.html"><span class="pill steady">Steady</span><h3>Care and community</h3><p>Full-time and part-time shifts. Resident employment in health and social services is still being supported.</p><span class="more">Current note</span></a>
+<a class="card" href="industry-technology.html"><span class="pill cautious">Cautious</span><h3>Technology</h3><p>Hybrid, online, contract, and freelance advertisements, with fewer vacancies and subdued resident growth.</p><span class="more">Current note</span></a>
+<a class="card" href="industry-finance.html"><span class="pill cautious">Cautious</span><h3>Finance</h3><p>Full-time and hybrid work. Vacancies fell from 5,800 to 4,500, and hiring is selective.</p><span class="more">Current note</span></a>
+<a class="card" href="industry-professional.html"><span class="pill mixed">Mixed</span><h3>Professional services</h3><p>Project-based contracts, hybrid days, and some freelance work. Earlier resident gains cooled.</p><span class="more">Current note</span></a>
+<a class="card" href="industry-logistics.html"><span class="pill mixed">Mixed</span><h3>Logistics and industry</h3><p>Full-time and part-time site work. Transport supported resident jobs. Online work is limited.</p><span class="more">Current note</span></a>
+<a class="card" href="industry-public.html"><span class="pill steady">Steady</span><h3>Public and essential services</h3><p>Full-time schemes, with some part-time hours. Resident employment growth was supported here.</p><span class="more">Current note</span></a>
 </div>
 <p style="margin-top:1.4rem"><a href="market.html">National market note behind these labels</a></p>
 </div></section>
@@ -468,39 +475,51 @@ PAGES["skills.html"] = (
 )
 
 PAGES["work-options.html"] = (
-    "none",
-    "Work options in Singapore: hours, CPF, and flexible work | WorkNest SG",
-    "How part-time, contract, hybrid, remote, and freelance work are usually described in Singapore, including CPF and flexible-work rules.",
+    "work",
+    "Full-time, part-time, hybrid, online, contract and freelance work in Singapore | WorkNest SG",
+    "How full-time, part-time, hybrid, online, contract, project-based, and freelance work are showing up in Singapore's job market in late 2026.",
     f"""
 <div class="page-head"><div class="wrap">
-<p class="eyebrow">Work arrangements</p>
-<h1>Part-time, hybrid, and freelance work are different arrangements.</h1>
-<p class="lede">Advertisements use these words for hours, for place, or for the kind of contract. CPF, leave, and tax follow from that difference. The industry notes describe where hiring is steadier. This note describes the arrangements themselves.</p>
+<p class="eyebrow">Work types · November 2026</p>
+<h1>Full-time, part-time, hybrid, online, contract, and freelance work.</h1>
+<p class="lede">Six arrangements people look for in Singapore, set against this quarter's labour figures. Full-time and part-time hiring is holding in care, transport, and public services. Hybrid, online, contract, project-based, and freelance work are more visible in technology, finance, and professional services, where vacancies are thinner.</p>
 </div></div>
 <section><div class="wrap">
 {STAMP}
 <div class="tablewrap"><table>
-<thead><tr><th>Arrangement</th><th>How it is usually described</th><th>What usually comes with it</th></tr></thead>
+<thead><tr><th>Work type</th><th>Where it shows up now</th><th>How it is usually set up</th></tr></thead>
 <tbody>
-<tr><td>Full-time employee</td><td>A contract of service, commonly around a standard work week.</td><td>Hours, overtime, leave, probation, and notice.</td></tr>
-<tr><td>Part-time employee</td><td>Under the Employment Act, a part-time employee is contracted to work less than 35 hours a week.</td><td>The weekly hours in the contract, pay for extra hours, and pro-rated leave. The person remains an employee.</td></tr>
-<tr><td>Fixed-term contract</td><td>Employment that ends on a date or when a project ends.</td><td>Renewal, notice during the term, and the name of the employer.</td></tr>
-<tr><td>Hybrid or work from home</td><td>An arrangement about place. It is a schedule, and formal flexible-work requests have had a process since 1 December 2024.</td><td>Which days, which hours, equipment, and whether the pattern is written into the contract.</td></tr>
-<tr><td>Shift work</td><td>Common in care, transport, security, and food services.</td><td>The roster, rest time, and how far ahead shifts are published.</td></tr>
-<tr><td>Freelance or contract for service</td><td>Payment for a deliverable. This sits outside employment.</td><td>Payment timing, ownership of the work, and insurance. IRAS and CPF Board publish how self-employed CPF and tax differ.</td></tr>
+<tr><td><a href="#full-time">Full-time work</a></td><td>Public services, care, and transport, where resident employment is still being supported.</td><td>A contract of service around a standard week, with leave, notice, and CPF.</td></tr>
+<tr><td><a href="#part-time">Part-time work</a></td><td>Care, transport, essential services, and some roles beside a main job.</td><td>Under the Employment Act, fewer than 35 hours a week. The person remains an employee.</td></tr>
+<tr><td><a href="#hybrid">Hybrid work</a></td><td>Technology and finance advertisements, even as vacancies in those sectors fell by June.</td><td>A mix of office and home days. The count of office days is part of the posting.</td></tr>
+<tr><td><a href="#online">Online work</a></td><td>Technology, some professional services, and a share of freelance projects.</td><td>The work is done online. Many postings still name overlap hours or occasional office days.</td></tr>
+<tr><td><a href="#contract">Contract and project-based work</a></td><td>Technology and professional services, in a quarter shaped by restructuring.</td><td>Employment or a project fee, often with an end date and a named employer.</td></tr>
+<tr><td><a href="#freelance">Freelance work</a></td><td>Project work beside a main role, especially where firms are hiring more selectively.</td><td>Paid per project. CPF and tax follow the self-employed rules.</td></tr>
 </tbody>
 </table></div>
 <div class="brief">
 <article class="article">
+<h2 id="full-time">Full-time work</h2>
+<p>Full-time work is still the largest pattern in resident employment. In the third quarter of 2026, that resident growth was supported in public administration and education, transportation and storage, and health and social services. A full-time role is a contract of service, commonly around a standard week, with hours, overtime, leave, probation, and notice written into it.</p>
+<p>In technology and finance, vacancies were fewer by June. Financial services fell from 5,800 to 4,500, and information and communications from 5,300 to 4,400. Hiring there is selective. In care and public services it is steadier, and advertisements more often name shifts, registration, or a scheme window.</p>
+<h2 id="part-time">Part-time work</h2>
+<p>Part-time work, under the Employment Act, is a contract for fewer than 35 hours a week. It is still employment. Pro-rated leave and CPF for citizens and permanent residents follow from that, once monthly wages are more than $50. The current CPF table is on the CPF Board site.</p>
+<p>Part-time hours show up most clearly in care, transport, and essential services, the same sectors supporting resident employment this quarter. Some people also keep part-time work beside a full-time role when the hours and the existing contract allow it. Pay depends on the hours that are actually rostered.</p>
+<h2 id="hybrid">Hybrid work</h2>
+<p>Hybrid work is a schedule: some days in an office, some days elsewhere. It is common language in technology and finance advertisements. Those are also the sectors whose vacancies fell by June, and whose resident employment growth was subdued in the third quarter. A hybrid posting in a selective market still names the office days.</p>
+<p>Formal flexible-work requests have had a written process since 1 December 2024. The employer has up to two months to respond. The guidelines describe the process. Agreement is a separate decision, and the pattern in a job advertisement is the one on offer for a new role.</p>
+<h2 id="online">Online work</h2>
+<p>Online work means the tasks are done over the internet. It appears in technology, in parts of professional services, and in freelance projects. It is a feature of those advertisements. The national figures do not publish a separate count for online jobs, and many postings that say online still include overlap hours or a few days on site.</p>
+<p>In information and communications, vacancies were 4,400 in June, down from 5,300 in March, and retrenchments in the second quarter rose from 530 to 720. Online arrangements are still being advertised inside that tighter market.</p>
+<h2 id="contract">Contract and project-based work</h2>
+<p>Contract and project-based work is employment that ends on a date, or a fee for a defined piece of work. It is common in technology and professional services. Those sectors recorded resident gains in the second quarter and subdued resident growth in the third, and business reorganisation was the main reason for retrenchments across the economy. A contract often names the employer, the end date, and whether it can end early.</p>
+<p>Project-based professional work — a memo, a model, a drawing set, a managed account — can be employment by the firm or employment by an agency deployed to the firm. Those are different CPF positions. Entry-level PMET vacancies, 31,700 in June, included professional services among the sectors in that pool.</p>
+<h2 id="freelance">Freelance work</h2>
+<p>Freelance work is paid per project and sits outside employment. It shows up where firms want a defined deliverable without adding a headcount, which fits a quarter of selective hiring in technology, finance, and professional services. It also shows up beside a full-time or part-time role.</p>
+<p>CPF and tax for freelance income follow the self-employed rules published by CPF Board and IRAS. An advertisement that says "partner" can still be employment, or it can be freelance. The contract type is what the CPF position follows. These notes do not estimate freelance earnings.</p>
 <h2>CPF follows employment, including part-time</h2>
 <p>A Singapore citizen or permanent resident employed under a contract of service, with total wages of more than $50 a month, is in the group whose employer pays CPF. That includes part-time, temporary, and contract employees. Where monthly wages are above $50 and not more than $500, there is no employee share, and the employer still pays the employer share. Contributions are due by the 14th of the following month, or the next working day when the 14th falls on a weekend or public holiday. Rates change, including an increase for senior employees from 1 January 2027. The current table is on the CPF Board site.</p>
-<p>Freelance income is treated under the self-employed rules. An advertisement that uses "partner" can still be employment, or it can be a contract for service. The contract type is what the CPF position follows.</p>
-<h2>Flexible work requests</h2>
-<p>The Tripartite Guidelines on Flexible Work Arrangement Requests took effect on 1 December 2024. A formal request is in writing and includes the date, the type of arrangement, the reason, and the start and end where there is one. The employer has up to two months to respond. The guidelines describe that process. Agreement to the request is a separate decision. Informal arrangements can continue alongside it.</p>
-<p>For someone still looking, the arrangement on offer is the one written in the advertisement. The formal request process applies to someone already employed.</p>
-<h2>A second stream of income</h2>
-<p>Some people add part-time or freelance work beside a main job when the hours allow it. Existing contracts sometimes include an outside-work clause, and rest-time rules still apply. Pay from a second stream depends on the hours and the work that actually comes in. These notes do not estimate earnings.</p>
-<p class="src-note">Sources: MOM Employment Act guidance on part-time employment; MOM Tripartite Guidelines on Flexible Work Arrangement Requests; CPF Board, saving as an employee.</p>
+<p class="src-note">Sources: MOM Employment Act guidance on part-time employment; MOM Tripartite Guidelines on Flexible Work Arrangement Requests; CPF Board, saving as an employee; MOM labour market releases for the second and third quarters of 2026.</p>
 </article>
 <aside class="rail">
 <h2>Alongside this</h2>
@@ -523,7 +542,7 @@ PAGES["applying.html"] = (
 <div class="page-head"><div class="wrap">
 <p class="eyebrow">Applications</p>
 <h1>What a job advertisement usually contains.</h1>
-<p class="lede">An ordinary posting names an employer, the hours, the workplace, and how pay is calculated. Applications go to that employer, or through a public portal such as MyCareersFuture. This site does not receive CVs.</p>
+<p class="lede">A posting for full-time, part-time, hybrid, online, contract, or freelance work usually names an employer, the hours, the workplace, and how pay is calculated. Applications go to that employer, or through a public portal such as MyCareersFuture. This site does not receive CVs.</p>
 </div></div>
 <section><div class="wrap brief">
 <article class="article">
@@ -597,7 +616,7 @@ PAGES["about.html"] = (
 <div class="page-head"><div class="wrap">
 <p class="eyebrow">About</p>
 <h1>Notes on the market, updated when the figures move.</h1>
-<p class="lede">WorkNest SG shares the current industry picture in Singapore in plain language: where resident hiring is holding, where it is quieter, and how work is usually arranged.</p>
+<p class="lede">WorkNest SG shares how full-time, part-time, hybrid, online, contract, project-based, and freelance work are showing up in Singapore, against the latest industry figures.</p>
 </div></div>
 <section><div class="wrap split">
 <div>

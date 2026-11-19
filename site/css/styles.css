@@ -167,8 +167,9 @@ textarea{min-height:140px;resize:vertical}
 .site-footer .brand svg rect{fill:#efeae0}
 .site-footer .brand svg path[stroke]{stroke:#1f5a4f}
 .site-footer .brand svg path[fill="#f6f3ec"]{fill:#1f5a4f}
-.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1.5rem}
-@media(max-width:800px){.foot-grid{grid-template-columns:1fr}}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr .9fr;gap:1.5rem}
+@media(max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.foot-grid{grid-template-columns:1fr}}
 .site-footer h2{font-family:var(--f-body);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sun);margin:0 0 .6rem}
 .site-footer ul{list-style:none;margin:0;padding:0}
 .site-footer li{margin:.28rem 0}
@@ -176,4 +177,5 @@ textarea{min-height:140px;resize:vertical}
 .legal{margin-top:1.6rem;padding-top:1rem;border-top:1px solid color-mix(in srgb,#fff 16%,transparent);color:color-mix(in srgb,#efeae0 78%,transparent);font-size:.88rem}
 .legal p{margin:0 0 .6rem}
 
+[id]{scroll-margin-top:88px}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
