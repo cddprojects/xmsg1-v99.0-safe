@@ -10,7 +10,7 @@ PUBLISHED = "19 November 2026"
 PUBLISHED_ISO = "2026-11-19"
 BYLINE = "WorkNest SG Editorial"
 
-BRAND = """<span class="wm">WorkNest</span><span class="wm-sg">SG</span>"""
+BRAND = """<span class="logo-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><rect width="32" height="32" rx="10" fill="#0e4d45"/><path d="M7 17 16 8l9 9" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 16v8h10v-8" fill="#fff"/><circle cx="16" cy="20" r="2.2" fill="#f0643c"/></svg></span><span class="wm">WorkNest<b>SG</b></span>"""
 
 NAV = [
     ("index.html", "Home", "home"),
@@ -46,17 +46,17 @@ def chrome(title: str, description: str, current: str, main: str) -> str:
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{description}">
-<meta name="theme-color" content="#1f5a4f">
+<meta name="theme-color" content="#0e4d45">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="topline"><div class="wrap"><span>Thursday 19 November 2026</span><span>Singapore</span><span class="hide-sm">Figures reviewed against MOM's third-quarter 2026 release</span></div></div>
 <header class="site-header"><div class="wrap nav">
 <a class="brand" href="index.html">{BRAND}</a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-list" aria-label="Open menu"><span class="bars"></span></button>
 <ul id="nav-list">{nav_html(current)}</ul>
+<a class="nav-cta" href="market.html">Q3 2026 review</a>
 </div></header>
 <main id="main">
 {main}
@@ -97,6 +97,33 @@ def chrome(title: str, description: str, current: str, main: str) -> str:
 </body>
 </html>
 """
+
+
+ICON_PATHS = {
+    "full-time": '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/>',
+    "part-time": '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    "hybrid": '<path d="M3 11l6-5 6 5v9H3z"/><path d="M15 9h6v11h-6M8 20v-5h2v5"/>',
+    "online": '<rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/>',
+    "contract": '<path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/>',
+    "freelance": '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>',
+    "care": '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
+    "tech": '<rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M9 3v4M15 3v4M9 17v4M15 17v4M3 9h4M3 15h4M17 9h4M17 15h4"/>',
+    "finance": '<path d="M4 20V11M10 20V5M16 20v-7M2 20h20"/>',
+    "professional": '<circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.2A5 5 0 0 1 21 19"/>',
+    "logistics": '<path d="M3 6h11v10H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/>',
+    "public": '<path d="M3 10l9-6 9 6M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18"/>',
+    "clock": '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    "chart": '<path d="M4 20V11M10 20V5M16 20v-7M2 20h20"/>',
+    "shield": '<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>',
+    "book": '<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5M9 7h6"/>',
+    "arrow": '<path d="M5 12h14M13 6l6 6-6 6"/>',
+}
+SECTOR_ICON = {"industry-care.html": "care", "industry-technology.html": "tech", "industry-finance.html": "finance", "industry-professional.html": "professional", "industry-logistics.html": "logistics", "industry-public.html": "public"}
+WORK_ICON = ["full-time", "part-time", "hybrid", "online", "contract", "freelance"]
+
+
+def icon(name: str, cls: str = "ico") -> str:
+    return f'<svg class="{cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{ICON_PATHS[name]}</svg>'
 
 
 def write(name: str, title: str, description: str, current: str, main: str) -> None:
@@ -575,17 +602,30 @@ def meta_line(p) -> str:
     return f'<time datetime="{PUBLISHED_ISO}">{PUBLISHED}</time> · {reading_minutes(p["body"])} min read'
 
 
+CAT_CLASS = {"Work types": "c-work", "Industry report": "c-industry", "Market review": "c-market", "Practical guide": "c-guide"}
+
+
+def card_icon(p) -> str:
+    if p.get("series"):
+        return icon(WORK_ICON[p["series"] - 1])
+    if p["slug"] in SECTOR_ICON:
+        return icon(SECTOR_ICON[p["slug"]])
+    return icon("chart" if p["category"] == "Market review" else "book")
+
+
 def card(p, featured=False) -> str:
     kicker = p["category"]
     if p.get("series"):
-        kicker = f"Work types · Part {p['series']} of 6"
+        kicker = f"Work types · Part {p['series']}"
     pill = ""
     if p.get("outlook"):
         cls, label = p["outlook"]
-        pill = f'<span class="pill {cls}">Outlook: {label}</span>'
-    cls = "post-card featured" if featured else "post-card"
-    title = p["title"] if featured else p["card_title"]
-    return f'<a class="{cls}" href="{p["slug"]}"><span class="kicker">{kicker}</span>{pill}<h3>{title}</h3><p>{p["dek"]}</p><span class="meta">{meta_line(p)}</span></a>'
+        pill = f'<span class="pill {cls}">{label}</span>'
+    return (
+        f'<a class="post-card {CAT_CLASS[p["category"]]}" href="{p["slug"]}"><span class="card-top"><span class="card-ico">{card_icon(p)}</span>'
+        f'<span class="badge">{kicker}</span>{pill}</span><h3>{p["card_title"]}</h3><p>{p["dek"]}</p>'
+        f'<span class="meta">{icon("clock")}{reading_minutes(p["body"])} min read<span class="more">Read{icon("arrow")}</span></span></a>'
+    )
 
 
 def render_post(p) -> str:
@@ -609,12 +649,15 @@ def render_post(p) -> str:
     related = "".join(card(BY_SLUG[s]) for s in p["related"])
     return f"""
 <article>
-<header class="post-head"><div class="wrap narrow">
+<header class="post-hero {CAT_CLASS[p["category"]]}"><div class="wrap post-hero-grid">
+<div>
 <p class="crumbs"><a href="index.html">Home</a><span>/</span><a href="{hub_href}">{p["category"]}</a></p>
-<p class="eyebrow">{kicker}</p>
+<p class="badge">{kicker}</p>
 <h1>{p["title"]}</h1>
 <p class="dek">{p["dek"]}</p>
-<p class="byline"><span class="author">By {BYLINE}</span><span>{meta_line(p)}</span>{outlook}</p>
+<div class="byline"><span class="avatar" aria-hidden="true">WN</span><span><span class="author">{BYLINE}</span><span class="meta">{meta_line(p)}</span></span>{outlook}</div>
+</div>
+<div class="post-hero-art" aria-hidden="true">{card_icon(p)}</div>
 </div></header>
 <div class="wrap post-grid">
 <div class="prose">
@@ -629,50 +672,43 @@ def render_post(p) -> str:
 </div>
 </article>
 <section class="related"><div class="wrap">
-<h2>Further reading</h2>
+<div class="sec-head"><p class="eyebrow">Keep reading</p><h2>Related articles</h2></div>
 <div class="post-grid-cards">{related}</div>
 </div></section>
 """
 
 
-WORK_INDEX = [
-    ("Full-time", "Where hiring is holding"),
-    ("Part-time", "Hours, CPF, and who is hiring"),
-    ("Hybrid", "Office days in a selective market"),
-    ("Online", "How remote roles are advertised"),
-    ("Contract", "Fixed terms in a restructuring year"),
-    ("Freelance", "Project work outside employment"),
+WORK_DATA = [
+    ("Full-time", "Public services, care, and transport, where resident employment is still growing.", "A contract of service around a standard week, with leave, notice, and CPF for citizens and permanent residents.", "+27,700", "Total employment growth in the third quarter of 2026"),
+    ("Part-time", "Care, transport and storage, and essential services.", "Fewer than 35 contracted hours a week. Still employment, with pro-rated leave and CPF once wages pass $50 a month.", "Under 35", "Contracted hours a week that define a part-time employee"),
+    ("Hybrid", "Technology and financial services.", "A set number of office days, sometimes with fixed anchor days. Formal requests follow the Tripartite Guidelines in force since 1 December 2024.", "4,500", "Financial services vacancies in June 2026, down from 5,800"),
+    ("Online", "Technology, parts of professional services, and freelance projects.", "Work delivered over the internet, often with overlap hours or occasional office days.", "4,400", "Information and communications vacancies in June 2026"),
+    ("Contract", "Technology and professional services.", "Fixed-term employment with an end date, or a project fee under a contract for service.", "72.1%", "Share of second-quarter retrenchments due to reorganisation"),
+    ("Freelance", "Technology, finance, and professional services.", "Self-employment, with MediSave and income tax handled under the self-employed rules.", "$6,000", "Annual net trade income above which self-employed MediSave applies"),
 ]
 
 
-def work_index() -> str:
-    rows = []
-    for (word, note), p in zip(WORK_INDEX, WORK_POSTS):
-        rows.append(
-            f'<li><a href="{p["slug"]}"><span class="ix-n">{p["series"]:02d}</span><span class="ix-word">{word}</span>'
-            f'<span class="ix-note">{note}<span class="ix-meta">{reading_minutes(p["body"])} min read</span></span><span class="ix-arrow" aria-hidden="true">&rarr;</span></a></li>'
-        )
-    return f'<ol class="index">{"".join(rows)}</ol>'
-
-
-def outlook_tag(p) -> str:
-    cls, label = p["outlook"]
-    return f'<span class="pill {cls}">{label}</span>'
-
-
-def sector_rows(posts) -> str:
-    rows = []
-    for p in posts:
-        sector, headline = p["card_title"].split(": ", 1)
-        rows.append(
-            f'<li><a href="{p["slug"]}"><span class="sw-sector">{sector}</span><span class="sw-outlook">{outlook_tag(p)}</span>'
-            f'<span class="sw-text"><strong>{headline[0].upper() + headline[1:]}</strong>{p["dek"]}</span><span class="ix-arrow" aria-hidden="true">&rarr;</span></a></li>'
-        )
-    return f'<ol class="sector-watch">{"".join(rows)}</ol>'
+def explorer() -> str:
+    tabs, panels = [], []
+    for i, ((label, where, setup, fig, cap), p) in enumerate(zip(WORK_DATA, WORK_POSTS)):
+        sel = "true" if i == 0 else "false"
+        tabs.append(f'<button role="tab" id="tab-{i}" aria-controls="panel-{i}" aria-selected="{sel}" tabindex="{0 if i == 0 else -1}">{icon(WORK_ICON[i])}<span>{label}</span></button>')
+        hidden = "" if i == 0 else " hidden"
+        panels.append(f"""<div class="panel" role="tabpanel" id="panel-{i}" aria-labelledby="tab-{i}"{hidden}>
+<div class="panel-main">
+<p class="badge">Part {i + 1} of 6</p>
+<h3>{p["title"]}</h3>
+<p>{p["dek"]}</p>
+<dl class="facts"><div><dt>Where it is most visible</dt><dd>{where}</dd></div><div><dt>How it is usually set up</dt><dd>{setup}</dd></div></dl>
+<a class="btn btn-primary" href="{p["slug"]}">Read the {label.lower()} article{icon("arrow")}</a>
+</div>
+<div class="panel-fig"><span class="panel-ico">{icon(WORK_ICON[i])}</span><b>{fig}</b><span>{cap}</span><small>Source: Ministry of Manpower and CPF Board</small></div>
+</div>""")
+    return f'<div class="explorer"><div class="tabs" role="tablist" aria-label="Work types">{"".join(tabs)}</div>{"".join(panels)}</div>'
 
 
 def bar_chart() -> str:
-    data = [("Manufacturing", 670, 870), ("Information and communications", 530, 720), ("Financial services", 560, 710)]
+    data = [("Manufacturing", 670, 870), ("Information & communications", 530, 720), ("Financial services", 560, 710)]
     top = max(q2 for _, _, q2 in data)
     rows = "".join(
         f'<div class="bar-row"><span class="bar-label">{label}</span>'
@@ -681,21 +717,65 @@ def bar_chart() -> str:
         for label, q1, q2 in data
     )
     return f"""<figure class="chart">
-<figcaption><span class="fig-n">Fig. 1</span>Retrenchments rose in three outward-oriented sectors</figcaption>
-<p class="legend"><span class="key q1"></span>First quarter 2026 <span class="key q2"></span>Second quarter 2026</p>
+<figcaption>Retrenchments by sector, 2026</figcaption>
+<p class="legend"><span><i class="key q1"></i>Q1 2026</span><span><i class="key q2"></i>Q2 2026</span></p>
 {rows}
 <p class="chart-src">Source: Ministry of Manpower, Labour Market Report, second quarter 2026.</p>
 </figure>"""
 
 
-def guide_essays(posts) -> str:
+def sector_cards(posts) -> str:
     items = []
-    for i, p in enumerate(posts, 1):
+    for p in posts:
+        sector, headline = p["card_title"].split(": ", 1)
+        cls, label = p["outlook"]
         items.append(
-            f'<a class="essay" href="{p["slug"]}"><span class="essay-n">Guide {i:02d}</span><h3>{p["card_title"]}</h3>'
-            f'<p>{p["dek"]}</p><span class="meta">{meta_line(p)}</span></a>'
+            f'<a class="sector-card" href="{p["slug"]}"><span class="sector-ico">{icon(SECTOR_ICON[p["slug"]])}</span>'
+            f'<span class="pill {cls}">{label}</span><h3>{sector}</h3><p>{headline[0].upper() + headline[1:]}.</p>'
+            f'<span class="more">Read the report{icon("arrow")}</span></a>'
         )
-    return f'<div class="essays">{"".join(items)}</div>'
+    return f'<div class="sector-grid">{"".join(items)}</div>'
+
+
+SKYLINE = """<svg class="skyline" viewBox="0 0 600 300" aria-hidden="true">
+<circle cx="470" cy="70" r="34" fill="#f0643c" opacity=".9"/>
+<g fill="#cfe3dc"><rect x="40" y="120" width="34" height="150" rx="3"/><rect x="250" y="140" width="40" height="130" rx="3"/><rect x="300" y="100" width="28" height="170" rx="3"/><rect x="540" y="130" width="40" height="140" rx="3"/></g>
+<g fill="#0e4d45">
+<rect x="10" y="170" width="56" height="100" rx="3"/><rect x="72" y="140" width="50" height="130" rx="3"/>
+<rect x="352" y="118" width="24" height="152"/><rect x="388" y="118" width="24" height="152"/><rect x="424" y="118" width="24" height="152"/>
+<path d="M338 112h128c6 0 6 8 0 8H338c-4 0-4-8 0-8z"/>
+</g>
+<g fill="#ffffff" opacity=".55">
+<rect x="18" y="182" width="8" height="6"/><rect x="34" y="182" width="8" height="6"/><rect x="50" y="182" width="8" height="6"/>
+<rect x="18" y="198" width="8" height="6"/><rect x="34" y="198" width="8" height="6"/><rect x="50" y="198" width="8" height="6"/>
+<rect x="18" y="214" width="8" height="6"/><rect x="34" y="214" width="8" height="6"/><rect x="50" y="214" width="8" height="6"/>
+<rect x="80" y="154" width="8" height="6"/><rect x="96" y="154" width="8" height="6"/><rect x="80" y="170" width="8" height="6"/><rect x="96" y="170" width="8" height="6"/>
+<rect x="80" y="186" width="8" height="6"/><rect x="96" y="186" width="8" height="6"/><rect x="80" y="202" width="8" height="6"/><rect x="96" y="202" width="8" height="6"/>
+</g>
+<g stroke="#0e4d45" stroke-width="3" fill="none">
+<circle cx="520" cy="170" r="52"/><path d="M520 118v104M468 170h104M483 133l74 74M557 133l-74 74"/><path d="M505 268l15-46 15 46"/>
+</g>
+<g fill="#1f8a73">
+<path d="M150 270V196h6v74z"/><path d="M128 190q25 18 50 0l-14 10h-22z"/><ellipse cx="153" cy="188" rx="26" ry="6"/>
+<path d="M192 270V176h6v94z"/><ellipse cx="195" cy="168" rx="30" ry="7"/>
+<path d="M228 270V206h5v64z"/><ellipse cx="230" cy="200" rx="20" ry="5"/>
+</g>
+<path d="M0 270h600v30H0z" fill="#0e4d45" opacity=".12"/>
+<path d="M0 282c40-6 80 6 120 0s80 6 120 0 80 6 120 0 80 6 120 0 80 6 120 0" stroke="#0e4d45" stroke-width="2" fill="none" opacity=".35"/>
+</svg>"""
+
+
+FAQS = [
+    ("Does CPF apply to part-time work in Singapore?", "Yes. A part-time employee is still an employee. For Singapore citizens and permanent residents, CPF applies once total wages exceed $50 a month. Where wages are above $50 and no more than $500, only the employer's share is payable."),
+    ("What is the difference between contract and freelance work?", "A fixed-term contract is usually employment with an end date, so Employment Act protections and CPF apply while it runs. Freelance work is self-employment under a contract for service, with MediSave and income tax handled under the self-employed rules."),
+    ("Can employees ask for hybrid or flexible work?", "Since 1 December 2024, the Tripartite Guidelines on Flexible Work Arrangement Requests set out how employees can make a formal written request. Employers are expected to consider it properly and respond within two months, and may decline on reasonable business grounds."),
+    ("Are online job offers that ask for a deposit genuine?", "Genuine employers do not ask workers to pay to start a job. Task-based schemes that ask for deposits to unlock payments are a well-known scam pattern. Suspected scams can be reported to the ScamShield helpline on 1799."),
+    ("How often are the figures on WorkNest SG updated?", "Articles are reviewed when the Ministry of Manpower publishes a new labour market release. The next is the Labour Market Report for the third quarter of 2026, expected in mid-December 2026."),
+]
+
+
+def faq() -> str:
+    return "".join(f'<details><summary>{q}<span class="plus" aria-hidden="true"></span></summary><p>{a}</p></details>' for q, a in FAQS)
 
 
 PAGES = {}
@@ -705,49 +785,85 @@ PAGES["index.html"] = (
     "Full-time, part-time, hybrid, online, contract and freelance work in Singapore | WorkNest SG",
     "An independent Singapore blog on full-time, part-time, hybrid, online, contract, project-based, and freelance work, written from the latest official labour market figures.",
     f"""
-<section class="cover"><div class="wrap">
-<div class="cover-top">
-<h1>Six ways of working in Singapore, read against the latest figures.</h1>
-<div class="cover-side">
-<p>WorkNest SG is an independent blog on full-time, part-time, hybrid, online, contract, and freelance work. Each piece sets one arrangement against the sectors where it is most often advertised, using Ministry of Manpower data.</p>
-<p class="meta">Issue 01 &middot; November 2026 &middot; 15 articles</p>
+<section class="hero"><div class="wrap hero-grid">
+<div class="hero-copy">
+<p class="eyebrow-chip"><span class="dot"></span>Updated 19 November 2026 &middot; Singapore</p>
+<h1><span>Full-time</span>, <span>part-time</span>, <span>hybrid</span>, <span>online</span>, <span>contract</span> &amp; <span>freelance</span> work in Singapore</h1>
+<p class="hero-lede">Clear, sourced articles on how each kind of work is faring in Singapore's job market, written from the latest Ministry of Manpower figures.</p>
+<div class="chips">{"".join(f'<a class="chip" href="{p["slug"]}">{icon(WORK_ICON[i])}{WORK_DATA[i][0]}</a>' for i, p in enumerate(WORK_POSTS))}</div>
+<div class="btn-row"><a class="btn btn-primary" href="#explore">Six work types, compared{icon("arrow")}</a><a class="btn btn-ghost" href="market.html">Q3 2026 market review</a></div>
 </div>
+<div class="hero-art">
+{SKYLINE}
+<div class="float f1"><b>2.0%</b><span>Unemployment, Sep 2026</span></div>
+<div class="float f2"><b>+27,700</b><span>Jobs added in Q3 2026</span></div>
+<div class="float f3"><span class="ring">{icon("chart")}</span><span><b>42.3%</b> of firms expect to hire</span></div>
 </div>
-{work_index()}
 </div></section>
 
-<section class="story"><div class="wrap story-grid">
-<div class="story-text">
-<p class="kicker">Cover story &middot; Market review</p>
-<h2><a href="market.html">{BY_SLUG["market.html"]["title"]}</a></h2>
-<p class="dek">{BY_SLUG["market.html"]["dek"]}</p>
-<p class="byline"><span class="author">{BYLINE}</span><span>{meta_line(BY_SLUG["market.html"])}</span></p>
-<a class="section-link" href="market.html">Read the review</a>
+<section class="sources-strip"><div class="wrap">
+<span>Figures cited from</span><ul><li>Ministry of Manpower</li><li>CPF Board</li><li>SkillsFuture / SWDA</li><li>TAFEP</li><li>IRAS</li></ul>
+</div></section>
+
+<section id="explore" class="explore"><div class="wrap">
+<div class="sec-head center"><p class="eyebrow">Work types explorer</p><h2>Six ways of working, side by side</h2><p>Where each arrangement shows up in today's market, how it is usually set up, and one figure that matters.</p></div>
+{explorer()}
+</div></section>
+
+<section class="numbers"><div class="wrap numbers-grid">
+<div class="numbers-copy">
+<p class="eyebrow light">Market snapshot</p>
+<h2>The third quarter of 2026 in numbers</h2>
+<p>More jobs overall, steady unemployment, and recovering hiring intentions, with resident growth concentrated in a handful of sectors.</p>
+<div class="counters">
+<div><b data-count="2.0" data-suffix="%">2.0%</b><span>Overall unemployment, September</span></div>
+<div><b data-count="27700" data-prefix="+">+27,700</b><span>Employment growth, Q3</span></div>
+<div><b data-count="68600">68,600</b><span>Job vacancies, June</span></div>
+<div><b data-count="42.3" data-suffix="%">42.3%</b><span>Firms expecting to hire</span></div>
+</div>
+<a class="btn btn-light" href="market.html">Read the market review{icon("arrow")}</a>
 </div>
 {bar_chart()}
+</div></section>
+
+<section class="sectors"><div class="wrap">
+<div class="sec-head split-head"><div><p class="eyebrow">Industry reports</p><h2>How six sectors are hiring</h2></div><a class="text-link" href="industries.html">All industry reports{icon("arrow")}</a></div>
+{sector_cards(INDUSTRY_POSTS)}
+</div></section>
+
+<section class="guides-band"><div class="wrap guides-grid">
+<div class="guide-feature">
+<span class="guide-ico">{icon("shield")}</span>
+<p class="eyebrow">Practical guide</p>
+<h2>{BY_SLUG["applying.html"]["card_title"]}</h2>
+<p>{BY_SLUG["applying.html"]["dek"]}</p>
+<ul class="ticks"><li>The legal name of the employer</li><li>Hours, workplace, and pay basis</li><li>No charge to apply or interview</li></ul>
+<a class="btn btn-primary" href="applying.html">Read the guide{icon("arrow")}</a>
 </div>
-<div class="wrap"><dl class="ledger">
-<div><dt>Unemployment, September</dt><dd>2.0%</dd></div>
-<div><dt>Resident unemployment</dt><dd>3.0%</dd></div>
-<div><dt>Employment growth, Q3</dt><dd>+27,700</dd></div>
-<div><dt>Vacancies, June</dt><dd>68,600</dd></div>
-<div><dt>Firms expecting to hire</dt><dd>42.3%</dd></div>
-</dl></div></section>
-
-<section class="watch"><div class="wrap">
-<div class="section-head"><h2>Sector watch</h2><p>Six industries, the latest official picture for each, and the work arrangements they most often advertise.</p><a class="section-link" href="industries.html">All industry reports</a></div>
-{sector_rows(INDUSTRY_POSTS)}
+<div class="guide-feature alt-card">
+<span class="guide-ico">{icon("book")}</span>
+<p class="eyebrow">Practical guide</p>
+<h2>{BY_SLUG["skills.html"]["card_title"]}</h2>
+<p>{BY_SLUG["skills.html"]["dek"]}</p>
+<div class="mini-stats"><div><b>$500</b><span>Opening credit, age 25+</span></div><div><b>$4,000</b><span>Mid-career credit, age 40+</span></div></div>
+<a class="btn btn-ghost" href="skills.html">Read the guide{icon("arrow")}</a>
+</div>
 </div></section>
 
-<section class="guides"><div class="wrap">
-<div class="section-head"><h2>Field guides</h2><p>Two practical pieces: how to read a job advertisement, and what changes for SkillsFuture Credit on 1 December.</p><a class="section-link" href="articles.html">All articles</a></div>
-{guide_essays(GUIDE_POSTS)}
+<section class="latest"><div class="wrap">
+<div class="sec-head split-head"><div><p class="eyebrow">Latest articles</p><h2>From the work types series</h2></div>
+<div class="slider-nav"><button type="button" class="slide-btn" data-dir="-1" aria-label="Previous articles">{icon("arrow")}</button><button type="button" class="slide-btn" data-dir="1" aria-label="Next articles">{icon("arrow")}</button></div></div>
+<div class="slider" tabindex="0" aria-label="Work types articles">{"".join(card(p) for p in WORK_POSTS)}</div>
 </div></section>
 
-<section class="colophon"><div class="wrap colophon-grid">
-<div><h2>Sources</h2><p>Figures come from published releases by the Ministry of Manpower, CPF Board, SWDA, and other public bodies. Every article lists its sources.</p></div>
-<div><h2>Revisions</h2><p>Articles are revised when a new release changes the picture, and each change is recorded in the <a href="updates.html">editor's log</a>. Next review: mid-December 2026.</p></div>
-<div><h2>Independence</h2><p>WorkNest SG is not a government agency or an employment agency. It does not list vacancies or place candidates. <a href="about.html">About the blog</a></p></div>
+<section class="faq"><div class="wrap faq-grid">
+<div><p class="eyebrow">Common questions</p><h2>Quick answers on work arrangements</h2><p>Short answers drawn from the articles. Each topic is covered in more depth in the series.</p><a class="text-link" href="articles.html">Browse all articles{icon("arrow")}</a></div>
+<div class="faq-list">{faq()}</div>
+</div></section>
+
+<section class="about-band"><div class="wrap about-inner">
+<div><h2>Independent, sourced, and dated.</h2><p>WorkNest SG is not a government agency or an employment agency. It does not list vacancies, place candidates, or promise jobs or pay. Every article names its sources and the date it was reviewed.</p></div>
+<a class="btn btn-light" href="about.html">About WorkNest SG</a>
 </div></section>
 """,
 )
@@ -774,7 +890,8 @@ PAGES["work-options.html"] = (
 <tr><td><a href="freelance-work.html">Freelance</a></td><td>Technology, finance, and professional services.</td><td>Self-employment, with CPF and tax under the self-employed rules.</td></tr>
 </tbody>
 </table></div>
-{work_index()}
+{explorer()}
+<div class="post-grid-cards spaced">{"".join(card(p) for p in WORK_POSTS)}</div>
 </div></section>
 """,
 )
@@ -790,7 +907,7 @@ PAGES["industries.html"] = (
 <p class="dek">Each report covers one sector's latest figures and the work arrangements most often advertised there, from full-time and part-time shift work to hybrid, contract, and freelance roles.</p>
 </div></header>
 <section class="tight"><div class="wrap">
-{sector_rows(INDUSTRY_POSTS)}
+{sector_cards(INDUSTRY_POSTS)}
 <p class="hub-note">Outlook labels summarise the latest official data for each sector. See the <a href="market.html">quarterly market review</a> for the national picture.</p>
 </div></section>
 """,
