@@ -97,10 +97,7 @@
     };
     var subject = "WorkNest SG: " + (value("topic") || "message");
     var body = "Name: " + value("name") + "\nEmail: " + value("email") + "\n\n" + value("msg");
-    form.hidden = true;
-    var done = document.getElementById("form-ok");
-    done.hidden = false;
-    done.focus();
     window.location.href = "mailto:support@worknestsg.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    setTimeout(function () { window.location.href = "thank-you.html"; }, 700);
   });
 })();

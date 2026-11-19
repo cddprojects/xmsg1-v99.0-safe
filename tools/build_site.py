@@ -38,14 +38,15 @@ def nav_html(current: str) -> str:
     return "".join(items)
 
 
-def chrome(title: str, description: str, current: str, main: str) -> str:
+def chrome(title: str, description: str, current: str, main: str, noindex: bool = False) -> str:
+    robots = '\n<meta name="robots" content="noindex, follow">' if noindex else ""
     return f"""<!doctype html>
 <html lang="en-SG">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title>
-<meta name="description" content="{description}">
+<meta name="description" content="{description}">{robots}
 <meta name="theme-color" content="#0e4d45">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/styles.css">
@@ -127,8 +128,11 @@ def icon(name: str, cls: str = "ico") -> str:
     return f'<svg class="{cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{ICON_PATHS[name]}</svg>'
 
 
+NOINDEX = {"thank-you.html"}
+
+
 def write(name: str, title: str, description: str, current: str, main: str) -> None:
-    (ROOT / name).write_text(chrome(title, description, current, main), encoding="utf-8")
+    (ROOT / name).write_text(chrome(title, description, current, main, name in NOINDEX), encoding="utf-8")
 
 
 def reading_minutes(html: str) -> int:
@@ -987,11 +991,35 @@ PAGES["contact.html"] = (
 <div class="field"><label for="msg">Message</label><textarea id="msg" name="msg" required></textarea><div class="err" aria-live="polite"></div></div>
 <button class="btn btn-primary" type="submit">Send message</button>
 </form>
-<div id="form-ok" class="ok" hidden tabindex="-1">
-<h2>Thank you for getting in touch.</h2>
-<p>Your email application should now be open with the message addressed to support@worknestsg.com. If it did not open, the same address can be used directly.</p>
 </div>
+</div></section>
+""",
+)
+
+PAGES["thank-you.html"] = (
+    "contact",
+    "Thank you | WorkNest SG",
+    "Thank you for contacting WorkNest SG.",
+    f"""
+<section class="thanks"><div class="wrap narrow">
+<div class="thanks-card">
+<span class="thanks-check" aria-hidden="true"><svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-15"/></svg></span>
+<p class="eyebrow">Message ready</p>
+<h1>Thank you for getting in touch</h1>
+<p class="dek">Your message has been prepared in your email application, addressed to support@worknestsg.com. Once it is sent, it reaches the WorkNest SG team directly.</p>
+<ol class="thanks-steps">
+<li><span class="step-ico">{icon("contract")}</span><div><h2>Email prepared</h2><p>Your mail application opens with the name, topic, and message already filled in.</p></div></li>
+<li><span class="step-ico">{icon("book")}</span><div><h2>Read by our team</h2><p>Corrections and updated figures are checked against the official source before any article is revised.</p></div></li>
+<li><span class="step-ico">{icon("shield")}</span><div><h2>Reply by email</h2><p>Replies go to the email address in your message, and article revisions are recorded in the <a href="updates.html">editor's log</a>.</p></div></li>
+</ol>
+<p class="thanks-note">If your mail application did not open, the same message can be sent directly to <a href="mailto:support@worknestsg.com">support@worknestsg.com</a>. WorkNest SG does not accept job applications or CVs, and never asks for NRIC numbers, Singpass details, or payments.</p>
+<div class="btn-row center"><a class="btn btn-primary" href="index.html">Back to the homepage{icon("arrow")}</a><a class="btn btn-ghost" href="articles.html">All articles</a></div>
 </div>
+</div></section>
+
+<section class="related"><div class="wrap">
+<div class="sec-head"><p class="eyebrow">While you are here</p><h2>Recommended reading</h2></div>
+<div class="post-grid-cards">{"".join(card(BY_SLUG[x]) for x in ["market.html", "hybrid-work.html", "applying.html"])}</div>
 </div></section>
 """,
 )
