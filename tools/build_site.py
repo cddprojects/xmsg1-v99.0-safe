@@ -10,7 +10,7 @@ PUBLISHED = "19 November 2026"
 PUBLISHED_ISO = "2026-11-19"
 BYLINE = "WorkNest SG Editorial"
 
-BRAND = """<svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#1f5a4f"/><path d="M6 16.5 16 7l10 9.5" stroke="#f6f3ec" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.5 15v9h13v-9" fill="#f6f3ec"/><circle cx="16" cy="19.5" r="2.4" fill="#c4553a"/></svg><span>Work<em>Nest</em> SG</span>"""
+BRAND = """<span class="wm">WorkNest</span><span class="wm-sg">SG</span>"""
 
 NAV = [
     ("index.html", "Home", "home"),
@@ -52,6 +52,7 @@ def chrome(title: str, description: str, current: str, main: str) -> str:
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
+<div class="topline"><div class="wrap"><span>Thursday 19 November 2026</span><span>Singapore</span><span class="hide-sm">Figures reviewed against MOM's third-quarter 2026 release</span></div></div>
 <header class="site-header"><div class="wrap nav">
 <a class="brand" href="index.html">{BRAND}</a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-list" aria-label="Open menu"><span class="bars"></span></button>
@@ -634,50 +635,67 @@ def render_post(p) -> str:
 """
 
 
-def topic_bar() -> str:
-    labels = ["Full-time", "Part-time", "Hybrid", "Online", "Contract", "Freelance"]
-    links = "".join(f'<a href="{p["slug"]}">{label}</a>' for label, p in zip(labels, WORK_POSTS))
-    return f'<nav class="topic-bar" aria-label="Work types series">{links}</nav>'
+WORK_INDEX = [
+    ("Full-time", "Where hiring is holding"),
+    ("Part-time", "Hours, CPF, and who is hiring"),
+    ("Hybrid", "Office days in a selective market"),
+    ("Online", "How remote roles are advertised"),
+    ("Contract", "Fixed terms in a restructuring year"),
+    ("Freelance", "Project work outside employment"),
+]
 
 
-def headline_list(slugs) -> str:
+def work_index() -> str:
     rows = []
-    for i, s in enumerate(slugs, 1):
-        p = BY_SLUG[s]
-        rows.append(f'<li><span class="idx">{i}</span><div><span class="kicker">{p["category"]}</span><a href="{s}">{p["card_title"]}</a></div></li>')
-    return f'<ol class="headline-list">{"".join(rows)}</ol>'
-
-
-def series_rows() -> str:
-    rows = []
-    for p in WORK_POSTS:
+    for (word, note), p in zip(WORK_INDEX, WORK_POSTS):
         rows.append(
-            f'<li><a href="{p["slug"]}"><span class="num">{p["series"]:02d}</span>'
-            f'<span class="body"><h3>{p["card_title"]}</h3><p>{p["dek"]}</p><span class="meta">{meta_line(p)}</span></span></a></li>'
+            f'<li><a href="{p["slug"]}"><span class="ix-n">{p["series"]:02d}</span><span class="ix-word">{word}</span>'
+            f'<span class="ix-note">{note}<span class="ix-meta">{reading_minutes(p["body"])} min read</span></span><span class="ix-arrow" aria-hidden="true">&rarr;</span></a></li>'
         )
-    return f'<ol class="series-rows">{"".join(rows)}</ol>'
+    return f'<ol class="index">{"".join(rows)}</ol>'
 
 
-def cover_tiles(posts) -> str:
-    tiles = []
-    for i, p in enumerate(posts):
-        sector = p["card_title"].split(":")[0]
-        cls, label = p["outlook"]
-        tiles.append(
-            f'<a class="cover-card" href="{p["slug"]}"><span class="cover tint-{i % 6}"><span class="cover-name">{sector}</span></span>'
-            f'<span class="cover-body"><span class="pill {cls}">Outlook: {label}</span><h3>{p["card_title"].split(": ", 1)[1].capitalize()}</h3><span class="meta">{meta_line(p)}</span></span></a>'
+def outlook_tag(p) -> str:
+    cls, label = p["outlook"]
+    return f'<span class="pill {cls}">{label}</span>'
+
+
+def sector_rows(posts) -> str:
+    rows = []
+    for p in posts:
+        sector, headline = p["card_title"].split(": ", 1)
+        rows.append(
+            f'<li><a href="{p["slug"]}"><span class="sw-sector">{sector}</span><span class="sw-outlook">{outlook_tag(p)}</span>'
+            f'<span class="sw-text"><strong>{headline[0].upper() + headline[1:]}</strong>{p["dek"]}</span><span class="ix-arrow" aria-hidden="true">&rarr;</span></a></li>'
         )
-    return f'<div class="cover-grid">{"".join(tiles)}</div>'
+    return f'<ol class="sector-watch">{"".join(rows)}</ol>'
 
 
-def guide_panels(posts) -> str:
-    panels = []
-    for i, p in enumerate(posts):
-        panels.append(
-            f'<a class="guide-panel {"dark" if i == 0 else "sand"}" href="{p["slug"]}"><span class="kicker">{p["category"]}</span>'
-            f'<h3>{p["card_title"]}</h3><p>{p["dek"]}</p><span class="meta">{meta_line(p)}</span></a>'
+def bar_chart() -> str:
+    data = [("Manufacturing", 670, 870), ("Information and communications", 530, 720), ("Financial services", 560, 710)]
+    top = max(q2 for _, _, q2 in data)
+    rows = "".join(
+        f'<div class="bar-row"><span class="bar-label">{label}</span>'
+        f'<span class="bar q1" style="--w:{q1 / top * 100:.0f}%"><i>{q1:,}</i></span>'
+        f'<span class="bar q2" style="--w:{q2 / top * 100:.0f}%"><i>{q2:,}</i></span></div>'
+        for label, q1, q2 in data
+    )
+    return f"""<figure class="chart">
+<figcaption><span class="fig-n">Fig. 1</span>Retrenchments rose in three outward-oriented sectors</figcaption>
+<p class="legend"><span class="key q1"></span>First quarter 2026 <span class="key q2"></span>Second quarter 2026</p>
+{rows}
+<p class="chart-src">Source: Ministry of Manpower, Labour Market Report, second quarter 2026.</p>
+</figure>"""
+
+
+def guide_essays(posts) -> str:
+    items = []
+    for i, p in enumerate(posts, 1):
+        items.append(
+            f'<a class="essay" href="{p["slug"]}"><span class="essay-n">Guide {i:02d}</span><h3>{p["card_title"]}</h3>'
+            f'<p>{p["dek"]}</p><span class="meta">{meta_line(p)}</span></a>'
         )
-    return f'<div class="guide-panels">{"".join(panels)}</div>'
+    return f'<div class="essays">{"".join(items)}</div>'
 
 
 PAGES = {}
@@ -687,62 +705,49 @@ PAGES["index.html"] = (
     "Full-time, part-time, hybrid, online, contract and freelance work in Singapore | WorkNest SG",
     "An independent Singapore blog on full-time, part-time, hybrid, online, contract, project-based, and freelance work, written from the latest official labour market figures.",
     f"""
-<section class="masthead"><div class="wrap">
-<p class="edition"><span>The WorkNest SG blog</span><span>Singapore</span><span>November 2026 edition</span></p>
-<h1><span>Full-time</span>, <span>part-time</span>, <span>hybrid</span>, <span>online</span>, <span>contract</span>, and <span>freelance</span> work.</h1>
-<p class="dek">Reporting and analysis on how each kind of work is faring in Singapore's job market, drawn from the latest Ministry of Manpower figures.</p>
-{topic_bar()}
+<section class="cover"><div class="wrap">
+<div class="cover-top">
+<h1>Six ways of working in Singapore, read against the latest figures.</h1>
+<div class="cover-side">
+<p>WorkNest SG is an independent blog on full-time, part-time, hybrid, online, contract, and freelance work. Each piece sets one arrangement against the sectors where it is most often advertised, using Ministry of Manpower data.</p>
+<p class="meta">Issue 01 &middot; November 2026 &middot; 15 articles</p>
+</div>
+</div>
+{work_index()}
 </div></section>
 
-<section class="lead"><div class="wrap lead-grid">
-<article class="lead-story">
-<p class="kicker">Lead story · Market review</p>
+<section class="story"><div class="wrap story-grid">
+<div class="story-text">
+<p class="kicker">Cover story &middot; Market review</p>
 <h2><a href="market.html">{BY_SLUG["market.html"]["title"]}</a></h2>
 <p class="dek">{BY_SLUG["market.html"]["dek"]}</p>
-<p class="byline"><span class="author">By {BYLINE}</span><span>{meta_line(BY_SLUG["market.html"])}</span></p>
-<a class="section-link" href="market.html">Read the full review</a>
-</article>
-<aside class="also">
-<h2>Also in this edition</h2>
-{headline_list(["hybrid-work.html", "contract-work.html", "industry-technology.html", "applying.html"])}
-</aside>
-</div></section>
-
-<section class="figures-band" aria-label="The quarter in numbers"><div class="wrap">
-<h2>The quarter in numbers</h2>
-<div class="band-grid">
-<div><b>2.0%</b><span>Overall unemployment, September 2026</span></div>
-<div><b>+27,700</b><span>Total employment growth, third quarter</span></div>
-<div><b>68,600</b><span>Job vacancies in June 2026</span></div>
-<div><b>42.3%</b><span>Firms expecting to hire, September poll</span></div>
+<p class="byline"><span class="author">{BYLINE}</span><span>{meta_line(BY_SLUG["market.html"])}</span></p>
+<a class="section-link" href="market.html">Read the review</a>
 </div>
-<p class="src">Ministry of Manpower, Labour Market Advance Release (3Q 2026) and Labour Market Report (2Q 2026).</p>
-</div></section>
-
-<section><div class="wrap series-layout">
-<div class="series-intro">
-<p class="eyebrow">The series</p>
-<h2>Work types in Singapore</h2>
-<p>Six articles, one for each arrangement, each set against the sectors where that kind of work is most often advertised.</p>
-<a class="section-link" href="work-options.html">Compare all six</a>
+{bar_chart()}
 </div>
-{series_rows()}
+<div class="wrap"><dl class="ledger">
+<div><dt>Unemployment, September</dt><dd>2.0%</dd></div>
+<div><dt>Resident unemployment</dt><dd>3.0%</dd></div>
+<div><dt>Employment growth, Q3</dt><dd>+27,700</dd></div>
+<div><dt>Vacancies, June</dt><dd>68,600</dd></div>
+<div><dt>Firms expecting to hire</dt><dd>42.3%</dd></div>
+</dl></div></section>
+
+<section class="watch"><div class="wrap">
+<div class="section-head"><h2>Sector watch</h2><p>Six industries, the latest official picture for each, and the work arrangements they most often advertise.</p><a class="section-link" href="industries.html">All industry reports</a></div>
+{sector_rows(INDUSTRY_POSTS)}
 </div></section>
 
-<section class="alt"><div class="wrap">
-<div class="section-head"><div><p class="eyebrow">Industry reports</p><h2>How six sectors are hiring</h2></div><a class="section-link" href="industries.html">All industry reports</a></div>
-{cover_tiles(INDUSTRY_POSTS)}
+<section class="guides"><div class="wrap">
+<div class="section-head"><h2>Field guides</h2><p>Two practical pieces: how to read a job advertisement, and what changes for SkillsFuture Credit on 1 December.</p><a class="section-link" href="articles.html">All articles</a></div>
+{guide_essays(GUIDE_POSTS)}
 </div></section>
 
-<section><div class="wrap">
-<div class="section-head"><div><p class="eyebrow">Practical guides</p><h2>Applications and training</h2></div><a class="section-link" href="articles.html">All articles</a></div>
-{guide_panels(GUIDE_POSTS)}
-</div></section>
-
-<section class="quote-band"><div class="wrap narrow">
-<p class="eyebrow">Editorial approach</p>
-<blockquote>Every article is written from the official figures, names its sources, and carries the date it was last reviewed.</blockquote>
-<p>When a new labour market report changes the picture, the affected articles are revised and the change is recorded in the <a href="updates.html">editor's log</a>. The next major release is MOM's Labour Market Report for the third quarter of 2026, expected in mid-December. <a href="about.html">About the blog</a></p>
+<section class="colophon"><div class="wrap colophon-grid">
+<div><h2>Sources</h2><p>Figures come from published releases by the Ministry of Manpower, CPF Board, SWDA, and other public bodies. Every article lists its sources.</p></div>
+<div><h2>Revisions</h2><p>Articles are revised when a new release changes the picture, and each change is recorded in the <a href="updates.html">editor's log</a>. Next review: mid-December 2026.</p></div>
+<div><h2>Independence</h2><p>WorkNest SG is not a government agency or an employment agency. It does not list vacancies or place candidates. <a href="about.html">About the blog</a></p></div>
 </div></section>
 """,
 )
@@ -769,7 +774,7 @@ PAGES["work-options.html"] = (
 <tr><td><a href="freelance-work.html">Freelance</a></td><td>Technology, finance, and professional services.</td><td>Self-employment, with CPF and tax under the self-employed rules.</td></tr>
 </tbody>
 </table></div>
-{series_rows()}
+{work_index()}
 </div></section>
 """,
 )
@@ -785,7 +790,7 @@ PAGES["industries.html"] = (
 <p class="dek">Each report covers one sector's latest figures and the work arrangements most often advertised there, from full-time and part-time shift work to hybrid, contract, and freelance roles.</p>
 </div></header>
 <section class="tight"><div class="wrap">
-{cover_tiles(INDUSTRY_POSTS)}
+{sector_rows(INDUSTRY_POSTS)}
 <p class="hub-note">Outlook labels summarise the latest official data for each sector. See the <a href="market.html">quarterly market review</a> for the national picture.</p>
 </div></section>
 """,
