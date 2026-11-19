@@ -109,10 +109,11 @@ PAGES["index.html"] = (
     "Full-time, part-time, hybrid, online, contract and freelance work in Singapore | WorkNest SG",
     "Notes on full-time, part-time, hybrid, online, contract, project-based, and freelance work in Singapore, set against the latest job-market figures.",
     f"""
-<section class="hero"><div class="wrap hero-grid">
-<div>
+<section class="hero"><div class="wrap">
 <p class="eyebrow">Work types in Singapore · November 2026</p>
-<h1>Full-time, part-time, hybrid, online, contract, and freelance work.</h1>
+<h1><span>Full-time</span>, <span>part-time</span>, <span>hybrid</span>, <span>online</span>, <span>contract</span>, and <span>freelance</span> work.</h1>
+<div class="hero-grid">
+<div>
 <p class="lede">These notes follow those six arrangements through the current market. Full-time and part-time hiring is still being supported in care, transport, and public services. Hybrid, online, contract, project-based, and freelance work show up more often in technology, finance, and professional services, where vacancies are thinner.</p>
 <div class="btn-row"><a class="btn btn-primary" href="work-options.html">Work types</a><a class="btn btn-ghost" href="industries.html">By industry</a></div>
 </div>
@@ -123,18 +124,18 @@ PAGES["index.html"] = (
 <div class="snap"><b>42.3%</b><span>Share of firms expecting to hire in the next three months, in the September 2026 poll. Up from August, and still described by MOM as selective.</span></div>
 <p class="src">Ministry of Manpower, Labour Market Advance Release, third quarter 2026. Reviewed 19 November 2026.</p>
 </aside>
-</div></section>
+</div></div></section>
 
 <section class="alt"><div class="wrap">
 <div class="head"><p class="eyebrow">The six arrangements</p><h2>Where each kind of work sits this quarter.</h2>
 <p class="lede">The labels follow the latest Ministry of Manpower picture. Pay and hours still depend on the role.</p></div>
 <div class="cards">
-<a class="card" href="work-options.html#full-time"><h3>Full-time work</h3><p>The main pattern in public services, care, and transport, where resident employment is still being supported.</p><span class="more">Current note</span></a>
-<a class="card" href="work-options.html#part-time"><h3>Part-time work</h3><p>Under 35 hours a week. Common in care, transport, and essential services, and sometimes beside a full-time role.</p><span class="more">Current note</span></a>
-<a class="card" href="work-options.html#hybrid"><h3>Hybrid work</h3><p>Still written into technology and finance advertisements, in a quarter when those vacancies fell.</p><span class="more">Current note</span></a>
-<a class="card" href="work-options.html#online"><h3>Online work</h3><p>A place of work inside technology, professional services, and some freelance arrangements. Office days still appear in many postings.</p><span class="more">Current note</span></a>
-<a class="card" href="work-options.html#contract"><h3>Contract and project-based work</h3><p>Common in technology and professional services, often with an end date, while those sectors restructure.</p><span class="more">Current note</span></a>
-<a class="card" href="work-options.html#freelance"><h3>Freelance work</h3><p>Paid per project, outside employment. It shows up beside a main role, with self-employed CPF and tax rules.</p><span class="more">Current note</span></a>
+<a class="card" href="work-options.html#full-time"><h3>Full-time work</h3><p>The main pattern in public services, care, and transport, where resident employment is still being supported.</p><span class="more">November picture</span></a>
+<a class="card" href="work-options.html#part-time"><h3>Part-time work</h3><p>Under 35 hours a week. Common in care, transport, and essential services, and sometimes beside a full-time role.</p><span class="more">November picture</span></a>
+<a class="card" href="work-options.html#hybrid"><h3>Hybrid work</h3><p>Still written into technology and finance advertisements, in a quarter when those vacancies fell.</p><span class="more">November picture</span></a>
+<a class="card" href="work-options.html#online"><h3>Online work</h3><p>A place of work inside technology, professional services, and some freelance arrangements. Office days still appear in many postings.</p><span class="more">November picture</span></a>
+<a class="card" href="work-options.html#contract"><h3>Contract and project-based work</h3><p>Common in technology and professional services, often with an end date, while those sectors restructure.</p><span class="more">November picture</span></a>
+<a class="card" href="work-options.html#freelance"><h3>Freelance work</h3><p>Paid per project, outside employment. It shows up beside a main role, with self-employed CPF and tax rules.</p><span class="more">November picture</span></a>
 </div>
 </div></section>
 
@@ -142,12 +143,12 @@ PAGES["index.html"] = (
 <div class="head"><p class="eyebrow">By industry</p><h2>The same arrangements, different sectors.</h2>
 <p>A full-time care role and a hybrid technology role are meeting different markets this quarter.</p></div>
 <div class="cards">
-<a class="card" href="industry-care.html"><span class="pill steady">Steady</span><h3>Care and community</h3><p>Full-time and part-time shifts. Resident hiring in health and social services is still being supported.</p><span class="more">Current note</span></a>
-<a class="card" href="industry-technology.html"><span class="pill cautious">Cautious</span><h3>Technology</h3><p>Hybrid, online, contract, and freelance work remain in advertisements. Vacancies fell, and resident hiring was subdued.</p><span class="more">Current note</span></a>
-<a class="card" href="industry-finance.html"><span class="pill cautious">Cautious</span><h3>Finance</h3><p>Mostly full-time and hybrid. Vacancies fell from 5,800 to 4,500, and hiring is selective.</p><span class="more">Current note</span></a>
-<a class="card" href="industry-professional.html"><span class="pill mixed">Mixed</span><h3>Professional services</h3><p>Project-based contracts, hybrid days, and some freelance work. Earlier resident gains cooled.</p><span class="more">Current note</span></a>
-<a class="card" href="industry-logistics.html"><span class="pill mixed">Mixed</span><h3>Logistics and industry</h3><p>Full-time and part-time site work. Transport supported resident jobs. Online work is limited.</p><span class="more">Current note</span></a>
-<a class="card" href="industry-public.html"><span class="pill steady">Steady</span><h3>Public and essential services</h3><p>Full-time schemes, with some part-time. This is where much of the resident employment growth sat.</p><span class="more">Current note</span></a>
+<a class="card" href="industry-care.html"><span class="pill steady">Steady</span><h3>Care and community</h3><p>Full-time and part-time shifts. Resident hiring in health and social services is still being supported.</p><span class="more">November picture</span></a>
+<a class="card" href="industry-technology.html"><span class="pill cautious">Cautious</span><h3>Technology</h3><p>Hybrid, online, contract, and freelance work remain in advertisements. Vacancies fell, and resident hiring was subdued.</p><span class="more">November picture</span></a>
+<a class="card" href="industry-finance.html"><span class="pill cautious">Cautious</span><h3>Finance</h3><p>Mostly full-time and hybrid. Vacancies fell from 5,800 to 4,500, and hiring is selective.</p><span class="more">November picture</span></a>
+<a class="card" href="industry-professional.html"><span class="pill mixed">Mixed</span><h3>Professional services</h3><p>Project-based contracts, hybrid days, and some freelance work. Earlier resident gains cooled.</p><span class="more">November picture</span></a>
+<a class="card" href="industry-logistics.html"><span class="pill mixed">Mixed</span><h3>Logistics and industry</h3><p>Full-time and part-time site work. Transport supported resident jobs. Online work is limited.</p><span class="more">November picture</span></a>
+<a class="card" href="industry-public.html"><span class="pill steady">Steady</span><h3>Public and essential services</h3><p>Full-time schemes, with some part-time. This is where much of the resident employment growth sat.</p><span class="more">November picture</span></a>
 </div>
 </div></section>
 
@@ -415,12 +416,12 @@ PAGES["industries.html"] = (
 <section><div class="wrap">
 <p class="stamp"><strong>Updated 19 November 2026</strong><span>Vacancy counts are from June 2026 until the third-quarter report is published.</span></p>
 <div class="cards">
-<a class="card" href="industry-care.html"><span class="pill steady">Steady</span><h3>Care and community</h3><p>Full-time and part-time shifts. Resident employment in health and social services is still being supported.</p><span class="more">Current note</span></a>
-<a class="card" href="industry-technology.html"><span class="pill cautious">Cautious</span><h3>Technology</h3><p>Hybrid, online, contract, and freelance advertisements, with fewer vacancies and subdued resident growth.</p><span class="more">Current note</span></a>
-<a class="card" href="industry-finance.html"><span class="pill cautious">Cautious</span><h3>Finance</h3><p>Full-time and hybrid work. Vacancies fell from 5,800 to 4,500, and hiring is selective.</p><span class="more">Current note</span></a>
-<a class="card" href="industry-professional.html"><span class="pill mixed">Mixed</span><h3>Professional services</h3><p>Project-based contracts, hybrid days, and some freelance work. Earlier resident gains cooled.</p><span class="more">Current note</span></a>
-<a class="card" href="industry-logistics.html"><span class="pill mixed">Mixed</span><h3>Logistics and industry</h3><p>Full-time and part-time site work. Transport supported resident jobs. Online work is limited.</p><span class="more">Current note</span></a>
-<a class="card" href="industry-public.html"><span class="pill steady">Steady</span><h3>Public and essential services</h3><p>Full-time schemes, with some part-time hours. Resident employment growth was supported here.</p><span class="more">Current note</span></a>
+<a class="card" href="industry-care.html"><span class="pill steady">Steady</span><h3>Care and community</h3><p>Full-time and part-time shifts. Resident employment in health and social services is still being supported.</p><span class="more">November picture</span></a>
+<a class="card" href="industry-technology.html"><span class="pill cautious">Cautious</span><h3>Technology</h3><p>Hybrid, online, contract, and freelance advertisements, with fewer vacancies and subdued resident growth.</p><span class="more">November picture</span></a>
+<a class="card" href="industry-finance.html"><span class="pill cautious">Cautious</span><h3>Finance</h3><p>Full-time and hybrid work. Vacancies fell from 5,800 to 4,500, and hiring is selective.</p><span class="more">November picture</span></a>
+<a class="card" href="industry-professional.html"><span class="pill mixed">Mixed</span><h3>Professional services</h3><p>Project-based contracts, hybrid days, and some freelance work. Earlier resident gains cooled.</p><span class="more">November picture</span></a>
+<a class="card" href="industry-logistics.html"><span class="pill mixed">Mixed</span><h3>Logistics and industry</h3><p>Full-time and part-time site work. Transport supported resident jobs. Online work is limited.</p><span class="more">November picture</span></a>
+<a class="card" href="industry-public.html"><span class="pill steady">Steady</span><h3>Public and essential services</h3><p>Full-time schemes, with some part-time hours. Resident employment growth was supported here.</p><span class="more">November picture</span></a>
 </div>
 <p style="margin-top:1.4rem"><a href="market.html">National market note behind these labels</a></p>
 </div></section>
@@ -481,7 +482,7 @@ PAGES["work-options.html"] = (
     f"""
 <div class="page-head"><div class="wrap">
 <p class="eyebrow">Work types · November 2026</p>
-<h1>Full-time, part-time, hybrid, online, contract, and freelance work.</h1>
+<h1><span>Full-time</span>, <span>part-time</span>, <span>hybrid</span>, <span>online</span>, <span>contract</span>, and <span>freelance</span> work.</h1>
 <p class="lede">Six arrangements people look for in Singapore, set against this quarter's labour figures. Full-time and part-time hiring is holding in care, transport, and public services. Hybrid, online, contract, project-based, and freelance work are more visible in technology, finance, and professional services, where vacancies are thinner.</p>
 </div></div>
 <section><div class="wrap">
