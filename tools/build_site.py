@@ -767,7 +767,7 @@ PAGES["index.html"] = (
 <div class="btn-row"><a class="btn btn-primary" href="#explore">Six work types, compared{icon("arrow")}</a><a class="btn btn-ghost" href="market.html">Q3 2026 market review</a></div>
 </div>
 <div class="hero-art">
-<picture><source srcset="images/hero-remote-work.webp" type="image/webp"><img src="images/hero-remote-work.jpg" alt="A woman working on a laptop at a wooden table in a bright room with indoor plants" width="1152" height="864" fetchpriority="high"></picture>
+<picture><source srcset="images/hero-home-sofa.webp" type="image/webp"><img src="images/hero-home-sofa.jpg" alt="A woman working on a laptop while sitting on a sofa in a sunlit living room" width="1152" height="864" fetchpriority="high"></picture>
 <div class="float f1"><b>2.0%</b><span>Unemployment, Sep 2026</span></div>
 <div class="float f2"><b>+27,700</b><span>Jobs added in Q3 2026</span></div>
 <div class="float f3"><span class="ring">{icon("trend")}</span><span><b>42.3%</b> of firms expect to hire</span></div>
