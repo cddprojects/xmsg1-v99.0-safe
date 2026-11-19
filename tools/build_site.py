@@ -834,10 +834,6 @@ PAGES["index.html"] = (
 <div class="faq-list">{faq()}</div>
 </div></section>
 
-<section class="about-band"><div class="wrap about-inner">
-<div><h2>Independent, sourced, and dated.</h2><p>WorkNest SG is not a government agency or an employment agency. It does not list vacancies, place candidates, or promise jobs or pay. Every article names its sources and the date it was reviewed.</p></div>
-<a class="btn btn-light" href="about.html">About WorkNest SG</a>
-</div></section>
 """,
 )
 
