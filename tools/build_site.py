@@ -949,7 +949,7 @@ PAGES["about.html"] = (
 <section class="tight"><div class="wrap split">
 <div>
 <h2>What we publish</h2>
-<p>WorkNest SG publishes a quarterly review of Singapore's labour market, a series on the main work arrangements, reports on six industries, and practical guides on job advertisements and training credits. The aim is to set each kind of work against the latest official data, in plain and accurate language.</p>
+<p>WorkNest SG publishes a quarterly review of Singapore's labour market, a series on the main work arrangements, reports on six industries, and practical guides on job advertisements and training credits. Each piece looks at one kind of work alongside the latest official figures, so readers can see how that arrangement is faring in today's market.</p>
 <h2>Editorial standards</h2>
 <p>Figures are taken from published releases by the Ministry of Manpower, CPF Board, the Skills and Workforce Development Agency, and other public bodies, and each article lists its sources. Articles carry the date they were last reviewed, and revisions are recorded in the <a href="updates.html">editor's log</a>. Corrections are welcome through the <a href="contact.html">contact page</a>.</p>
 </div>
