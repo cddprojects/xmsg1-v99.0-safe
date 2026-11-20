@@ -98,6 +98,6 @@
     var subject = "WorkNest SG: " + (value("topic") || "message");
     var body = "Name: " + value("name") + "\nEmail: " + value("email") + "\n\n" + value("msg");
     window.location.href = "mailto:support@worknestsg.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-    setTimeout(function () { window.location.href = "thank-you.html"; }, 700);
+    setTimeout(function () { window.location.href = form.getAttribute("data-thanks") || "thank-you/"; }, 700);
   });
 })();

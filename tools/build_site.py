@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Build the WorkNest SG blog as static HTML."""
 
+import posixpath
 import re
 from pathlib import Path
 
@@ -49,7 +50,7 @@ def chrome(title: str, description: str, current: str, main: str, noindex: bool 
 <meta name="description" content="{description}">{robots}
 <meta name="theme-color" content="#0e4d45">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/sgs-style.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -94,7 +95,7 @@ def chrome(title: str, description: str, current: str, main: str, noindex: bool 
 <p>&copy; 2026 WorkNest SG &middot; 22 Orchard Road, #03-01, Singapore 238885 &middot; +65 8396 3756 &middot; support@worknestsg.com</p>
 </div>
 </div></footer>
-<script src="js/main.js"></script>
+<script src="js/sgs-script.js"></script>
 </body>
 </html>
 """
@@ -131,8 +132,41 @@ def icon(name: str, cls: str = "ico") -> str:
 NOINDEX = {"thank-you.html"}
 
 
+FOLDER_PAGES = {"index.html": ".", "privacy.html": "privacy-policy", "thank-you.html": "thank-you"}
+LINK_ATTR = re.compile(r'\b(href|src|srcset|data-thanks)="([^"]*)"')
+
+
+def out_path(name: str) -> str:
+    if name in FOLDER_PAGES:
+        return posixpath.normpath(posixpath.join(FOLDER_PAGES[name], "index.html"))
+    return f"body/{name}"
+
+
+def relink(html: str, name: str) -> str:
+    here = posixpath.dirname(out_path(name)) or "."
+
+    def fix(m: re.Match) -> str:
+        attr, url = m.groups()
+        if not url or re.match(r"^(#|[a-z]+:)", url):
+            return m.group(0)
+        path, _, frag = url.partition("#")
+        if path.endswith(".html"):
+            if path in FOLDER_PAGES:
+                target = posixpath.relpath(FOLDER_PAGES[path], here)
+                path = "./" if target == "." else target + "/"
+            else:
+                path = posixpath.relpath(out_path(path), here)
+        else:
+            path = posixpath.relpath(path, here)
+        return f'{attr}="{path}{"#" + frag if frag else ""}"'
+
+    return LINK_ATTR.sub(fix, html)
+
+
 def write(name: str, title: str, description: str, current: str, main: str) -> None:
-    (ROOT / name).write_text(chrome(title, description, current, main, name in NOINDEX), encoding="utf-8")
+    target = ROOT / out_path(name)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text(relink(chrome(title, description, current, main, name in NOINDEX), name), encoding="utf-8")
 
 
 def reading_minutes(html: str) -> int:
@@ -984,7 +1018,7 @@ PAGES["contact.html"] = (
 <p>Phone: +65 8396 3756<br>22 Orchard Road, #03-01, Singapore 238885</p>
 </div>
 <div>
-<form id="contact-form" class="form" novalidate>
+<form id="contact-form" class="form" data-thanks="thank-you.html" novalidate>
 <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required><div class="err" aria-live="polite"></div></div>
 <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required><div class="err" aria-live="polite"></div></div>
 <div class="field"><label for="topic">Topic</label><select id="topic" name="topic"><option>Correction to an article</option><option>Suggestion for a future article</option><option>General enquiry</option></select></div>
