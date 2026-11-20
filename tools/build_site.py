@@ -86,7 +86,9 @@ def chrome(title: str, description: str, current: str, main: str, noindex: bool 
 <li><a href="about.html">About the blog</a></li>
 <li><a href="updates.html">Editor's log</a></li>
 <li><a href="contact.html">Contact</a></li>
-<li><a href="privacy.html">Privacy</a></li>
+<li><a href="privacy.html">Privacy Policy</a></li>
+<li><a href="pdpa-notice.html">PDPA Notice</a></li>
+<li><a href="terms.html">Terms of Service</a></li>
 <li><a href="disclaimer.html">Disclaimer</a></li>
 </ul></div>
 </div>
@@ -132,7 +134,7 @@ def icon(name: str, cls: str = "ico") -> str:
 NOINDEX = {"thank-you.html"}
 
 
-FOLDER_PAGES = {"index.html": ".", "privacy.html": "privacy-policy", "thank-you.html": "thank-you"}
+FOLDER_PAGES = {"index.html": ".", "privacy.html": "privacy-policy", "thank-you.html": "thank-you", "terms.html": "terms-of-service", "pdpa-notice.html": "pdpa-notice"}
 LINK_ATTR = re.compile(r'\b(href|src|srcset|data-thanks)="([^"]*)"')
 
 
@@ -1078,6 +1080,7 @@ PAGES["disclaimer.html"] = (
 <p>We cite public sources and link to official websites. We do not control those sites, are not responsible for their content, and are not affiliated with them.</p>
 <h2>Accuracy</h2>
 <p>Each article is dated, and the <a href="updates.html">editor's log</a> records the release behind it. Corrections can be sent through the <a href="contact.html">contact page</a>.</p>
+<p>Use of the site is also covered by the <a href="terms.html">Terms of Service</a>.</p>
 </div></section>
 """,
 )
@@ -1129,6 +1132,107 @@ PAGES["privacy.html"] = (
 <li>22 Orchard Road, #03-01, Singapore 238885</li>
 </ul>
 <p>If you are not satisfied with our response, you may contact the Personal Data Protection Commission at <a href="https://www.pdpc.gov.sg" rel="noopener">pdpc.gov.sg</a>.</p>
+<p>A shorter summary of how personal data is collected and used is in the <a href="pdpa-notice.html">PDPA Notice</a>. Use of the website is covered by the <a href="terms.html">Terms of Service</a>.</p>
+</div></section>
+""",
+)
+
+PAGES["terms.html"] = (
+    "about",
+    "Terms of Service | WorkNest SG",
+    "The terms that apply to the use of the WorkNest SG website, an independent publication about Singapore's job market.",
+    """
+<header class="post-head"><div class="wrap narrow">
+<p class="eyebrow">Terms</p>
+<h1>Terms of Service</h1>
+<p class="dek">Last updated: 20 November 2026</p>
+</div></header>
+<section class="tight"><div class="wrap narrow prose">
+<p>These terms apply to the use of the WorkNest SG website ("the site"), operated by WorkNest SG ("we", "us"). Using the site means accepting these terms. Anyone who does not accept them may stop using the site at any time.</p>
+<h2>1. About the site</h2>
+<p>WorkNest SG is an independent publication about Singapore's labour market and the six main ways people work: full-time, part-time, hybrid, online, contract and project-based, and freelance. It is not the Ministry of Manpower, the Skills and Workforce Development Agency, CPF Board, or any other government body, and it is not affiliated with them.</p>
+<h2>2. Not an employment agency</h2>
+<p>WorkNest SG is not an employment agency. It does not publish vacancies, accept job applications or CVs, or recruit, screen, place, or introduce candidates. No fee is charged to read the site, and WorkNest SG never asks for payment in return for a job, an interview, or a referral.</p>
+<h2>3. General information only</h2>
+<p>Articles are general information and are not legal, financial, tax, or career advice for any individual situation. Nothing on the site promises an interview, a job, or any level of income. Figures describe the national market on the date stated and may have changed since. The <a href="disclaimer.html">Disclaimer</a> explains this in more detail.</p>
+<h2>4. Acceptable use</h2>
+<p>The site may be used for personal, non-commercial reading and reference. It may not be used to:</p>
+<ul>
+<li>break any law of Singapore or any other applicable law;</li>
+<li>interfere with the site's security or operation, or attempt to access systems without permission;</li>
+<li>copy large parts of the site by automated means, or republish articles as one's own;</li>
+<li>send messages that are unlawful, misleading, abusive, or that impersonate another person or organisation.</li>
+</ul>
+<h2>5. Intellectual property</h2>
+<p>Articles, illustrations, layout, and the WorkNest SG name and logo belong to WorkNest SG unless stated otherwise. Short quotations with a link back to the original article are welcome. Official statistics remain the property of the agencies that publish them and are credited in each article's sources.</p>
+<h2>6. Links to other websites</h2>
+<p>The site links to MOM, SWDA, CPF Board, IRAS, MyCareersFuture, and other websites as sources. We do not control those websites and are not responsible for their content, availability, or privacy practices.</p>
+<h2>7. Accuracy and changes to content</h2>
+<p>We take reasonable care to report official figures accurately and record revisions in the <a href="updates.html">editor's log</a>. We may update, correct, or remove content at any time without notice.</p>
+<h2>8. Limitation of liability</h2>
+<p>To the extent permitted by law, WorkNest SG is not liable for any loss or damage arising from the use of, or reliance on, the site or its content, including decisions about employment, training, or finances. The site is provided "as is", and uninterrupted or error-free availability is not guaranteed.</p>
+<h2>9. Personal data</h2>
+<p>Personal data is handled under Singapore's Personal Data Protection Act 2012, as set out in the <a href="privacy.html">Privacy Policy</a> and the <a href="pdpa-notice.html">PDPA Notice</a>.</p>
+<h2>10. Changes to these terms</h2>
+<p>We may revise these terms from time to time. The current version is the one on this page, with the date shown above.</p>
+<h2>11. Governing law</h2>
+<p>These terms are governed by the laws of Singapore, and the courts of Singapore have jurisdiction over any dispute arising from them.</p>
+<h2>12. Contact</h2>
+<ul>
+<li>WorkNest SG</li>
+<li>support@worknestsg.com</li>
+<li>+65 8396 3756</li>
+<li>22 Orchard Road, #03-01, Singapore 238885</li>
+</ul>
+</div></section>
+""",
+)
+
+PAGES["pdpa-notice.html"] = (
+    "about",
+    "PDPA Notice | WorkNest SG",
+    "How WorkNest SG collects, uses, and discloses personal data under Singapore's Personal Data Protection Act 2012.",
+    """
+<header class="post-head"><div class="wrap narrow">
+<p class="eyebrow">Personal data</p>
+<h1>PDPA Notice</h1>
+<p class="dek">Last updated: 20 November 2026</p>
+</div></header>
+<section class="tight"><div class="wrap narrow prose">
+<p>This notice is issued under Singapore's Personal Data Protection Act 2012 (PDPA). It sets out the purposes for which WorkNest SG collects, uses, and discloses personal data, and how individuals can reach our Data Protection Officer. The full details are in the <a href="privacy.html">Privacy Policy</a>.</p>
+<h2>1. Personal data collected</h2>
+<p>WorkNest SG collects personal data only when someone chooses to contact us. The contact form opens an email in the visitor's own mail application; nothing is sent to our server until that email is sent. A message may include:</p>
+<ul>
+<li>name;</li>
+<li>email address;</li>
+<li>the topic and content of the message.</li>
+</ul>
+<p>We do not ask for NRIC or FIN numbers, Singpass details, one-time passwords, bank details, passwords, or CVs.</p>
+<h2>2. Purposes of collection, use, and disclosure</h2>
+<ul>
+<li>Reading and replying to corrections, questions, and topic suggestions.</li>
+<li>Reviewing and correcting articles where a reader points out an error.</li>
+<li>Keeping the website secure and running.</li>
+<li>Meeting legal and regulatory requirements.</li>
+</ul>
+<p>Personal data is not sold, not used for marketing without separate consent, and not used for recruitment or job placement.</p>
+<h2>3. Consent</h2>
+<p>Sending an email to WorkNest SG means consenting to the collection, use, and disclosure of the personal data in it for the purposes above. Consent may be withdrawn at any time by writing to our Data Protection Officer. If consent is withdrawn, we may be unable to continue handling the enquiry.</p>
+<h2>4. Disclosure to third parties</h2>
+<p>Personal data is disclosed only to our email service provider as needed to receive and answer messages, where the law requires it, or with consent. Where that provider stores data outside Singapore, we take reasonable steps to ensure a standard of protection comparable to the PDPA.</p>
+<h2>5. Protection and retention</h2>
+<p>We take reasonable security arrangements to protect personal data. Messages are kept only as long as needed to handle the enquiry or as required by law, and are then deleted or anonymised.</p>
+<h2>6. Access and correction</h2>
+<p>Individuals may request access to, or correction of, the personal data WorkNest SG holds about them. We may need to verify identity before acting on a request and aim to respond within 30 days.</p>
+<h2>7. Data Protection Officer</h2>
+<ul>
+<li>Data Protection Officer, WorkNest SG</li>
+<li>support@worknestsg.com</li>
+<li>+65 8396 3756</li>
+<li>22 Orchard Road, #03-01, Singapore 238885</li>
+</ul>
+<p>If a concern is not resolved to your satisfaction, the Personal Data Protection Commission can be reached at <a href="https://www.pdpc.gov.sg" rel="noopener">pdpc.gov.sg</a>.</p>
+<p>Use of the website is covered by the <a href="terms.html">Terms of Service</a>.</p>
 </div></section>
 """,
 )
