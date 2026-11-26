@@ -95,9 +95,9 @@
       var el = document.getElementById(id);
       return el ? el.value.trim() : "";
     };
-    var subject = "Opty Quest: " + (value("topic") || "message");
+    var subject = "Find Aligner: " + (value("topic") || "message");
     var body = "Name: " + value("name") + "\nEmail: " + value("email") + "\n\n" + value("msg");
-    window.location.href = "mailto:support@optyquest.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    window.location.href = "mailto:support@findaligner.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
     setTimeout(function () { window.location.href = form.getAttribute("data-thanks") || "thank-you/"; }, 700);
   });
 })();
